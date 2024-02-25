@@ -10,6 +10,12 @@ enum MoveType
 @export_category("Movement")
 @export var currentMoveType : MoveType
 
+@export_category("Stamina")
+@export var currentStamina : float
+@export var maxStamina : float = 100
+@export var staminaRegen : float = 1.0 
+@export var staminaDepletion : float = 1.0
+
 @export_category("Movement Speed")
 @export var currentSpeed : float = 5.0
 @export var crouchSpeed : float = 3.0
@@ -26,9 +32,20 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	changeMoveType(MoveType.run)
+	currentStamina = maxStamina
 
 func _process(delta):
 	moveTypeDetection()
+	
+	if currentMoveType == MoveType.sprint and direction != Vector3.ZERO:
+		currentStamina -= staminaDepletion * delta
+		currentStamina = clamp(currentStamina, 0, maxStamina)
+		
+		if currentStamina <= 0:
+			changeMoveType(MoveType.run)
+	elif currentStamina < maxStamina and direction == Vector3.ZERO:
+		currentStamina += staminaRegen * delta
+		currentStamina = clamp(currentStamina, 0, maxStamina)
 
 func moveTypeDetection():
 	if Input.is_action_just_pressed("crouch"):
@@ -70,8 +87,7 @@ func move():
 	if direction:
 		velocity = Vector3(direction.x * currentSpeed, velocity.y, direction.z * currentSpeed)
 	else:
-		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, currentSpeed)
-			velocity.z = move_toward(velocity.z, 0, currentSpeed)
+		velocity.x = move_toward(velocity.x, 0, currentSpeed)
+		velocity.z = move_toward(velocity.z, 0, currentSpeed)
 	
 	move_and_slide()
