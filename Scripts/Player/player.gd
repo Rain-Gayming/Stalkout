@@ -7,6 +7,9 @@ enum MoveType
 	sprint
 }
 
+@export_category("References")
+@export var cursorManager : CursorManager
+
 @export_category("Movement")
 @export var currentMoveType : MoveType
 @export var normalScale : Vector3
@@ -37,17 +40,24 @@ func _ready():
 	currentStamina = maxStamina
 
 func _process(delta):
-	moveTypeDetection()
 	
-	if currentMoveType == MoveType.sprint and direction != Vector3.ZERO:
-		currentStamina -= staminaDepletion * delta
-		currentStamina = clamp(currentStamina, 0, maxStamina)
+	if !cursorManager.isPaused:
+		moveTypeDetection()
 		
-		if currentStamina <= 0:
-			changeMoveType(MoveType.run)
-	elif currentStamina < maxStamina and direction == Vector3.ZERO:
-		currentStamina += staminaRegen * delta
-		currentStamina = clamp(currentStamina, 0, maxStamina)
+		if currentMoveType == MoveType.sprint and direction != Vector3.ZERO:
+			currentStamina -= staminaDepletion * delta
+			currentStamina = clamp(currentStamina, 0, maxStamina)
+			
+			if currentStamina <= 0:
+				changeMoveType(MoveType.run)
+		elif currentStamina < maxStamina and direction == Vector3.ZERO:
+			currentStamina += staminaRegen * delta
+			currentStamina = clamp(currentStamina, 0, maxStamina)
+		
+		#detects if the player is below the map
+		if position.y <= -10:
+			position = Vector3.ZERO
+			position.y = 5
 
 func moveTypeDetection():
 	if Input.is_action_just_pressed("crouch"):
@@ -74,15 +84,17 @@ func changeMoveType(moveType : MoveType):
 		currentSpeed = sprintSpeed
 
 func _physics_process(delta):
-	#gravity
-	if not is_on_floor():
-		velocity.y -= gravity * delta
 	
-	#jumping
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y += jumpHeight
-	
-	move()
+	if !cursorManager.isPaused:
+		#gravity
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		
+		#jumping
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y += jumpHeight
+		
+		move()
 
 func move():
 	#input direction

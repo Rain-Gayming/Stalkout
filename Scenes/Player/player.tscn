@@ -8,8 +8,9 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3iei4"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cursorManager")]
 script = ExtResource("1_xtxbh")
+cursorManager = NodePath("CursorManager")
 normalScale = Vector3(1, 1, 1)
 crouchScale = Vector3(1, 0.65, 1)
 staminaRegen = 12.0
@@ -18,10 +19,11 @@ staminaDepletion = 15.0
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_yysl2")
 
-[node name="Head" type="Node3D" parent="." node_paths=PackedStringArray("body")]
+[node name="Head" type="Node3D" parent="." node_paths=PackedStringArray("body", "cursorManager")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.708611, 0)
 script = ExtResource("2_ftnmb")
 body = NodePath("..")
+cursorManager = NodePath("../CursorManager")
 
 [node name="Camera" type="Camera3D" parent="Head"]
 
