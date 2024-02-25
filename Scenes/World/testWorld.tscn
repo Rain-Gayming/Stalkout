@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://dqmvss78c51hu"]
+[gd_scene load_steps=6 format=3 uid="uid://dqmvss78c51hu"]
+
+[ext_resource type="Texture2D" uid="uid://cmkr1drbraagm" path="res://Textures/Grids/Purple/texture_01.png" id="1_5a0ov"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0vn5"]
+albedo_texture = ExtResource("1_5a0ov")
+uv1_triplanar = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig2t0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_dr4au"]
+sky_material = SubResource("ProceduralSkyMaterial_ig2t0")
+
+[sub_resource type="Environment" id="Environment_dotx8"]
+background_mode = 2
+sky = SubResource("Sky_dr4au")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="TestWorld" type="Node3D"]
+
+[node name="ground" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_t0vn5")
+size = Vector3(15, 1, 15)
+
+[node name="environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment"]
+environment = SubResource("Environment_dotx8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
