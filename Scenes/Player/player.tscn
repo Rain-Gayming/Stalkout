@@ -10,6 +10,8 @@
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_xtxbh")
+normalScale = Vector3(1, 1, 1)
+crouchScale = Vector3(1, 0.65, 1)
 staminaRegen = 12.0
 staminaDepletion = 15.0
 

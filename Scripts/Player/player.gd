@@ -9,6 +9,8 @@ enum MoveType
 
 @export_category("Movement")
 @export var currentMoveType : MoveType
+@export var normalScale : Vector3
+@export var crouchScale : Vector3
 
 @export_category("Stamina")
 @export var currentStamina : float
@@ -62,10 +64,13 @@ func moveTypeDetection():
 func changeMoveType(moveType : MoveType):
 	currentMoveType = moveType
 	if moveType == MoveType.crouch:
+		scale = crouchScale
 		currentSpeed = crouchSpeed
 	if moveType == MoveType.run:
+		scale = normalScale
 		currentSpeed = runSpeed
 	if moveType == MoveType.sprint:
+		scale = normalScale
 		currentSpeed = sprintSpeed
 
 func _physics_process(delta):
