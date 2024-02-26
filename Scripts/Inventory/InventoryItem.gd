@@ -11,3 +11,17 @@ func setInfo(iItem : itemObject, iAmount : int):
 	
 	item = iItem
 	amount = iAmount
+
+func useItem():
+	var itemUsed = false
+	
+	if item.consumableEffects.size() > 0:
+		itemUsed = true
+	
+	if itemUsed:
+		removeItem(1)
+
+func removeItem(amountRemoved : int):
+	amount -= amountRemoved
+	if amount <= 0:
+		SignalManager.emitRemoveItem(self)

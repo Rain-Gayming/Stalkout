@@ -10,3 +10,4 @@ use_collision = true
 mesh = SubResource("BoxMesh_irk1f")
 script = ExtResource("1_cxmh6")
 item = ExtResource("2_lj5k0")
+amount = 3

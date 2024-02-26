@@ -1,8 +1,15 @@
-[gd_resource type="Resource" script_class="itemObject" load_steps=2 format=3 uid="uid://dvulqbrvi51s6"]
+[gd_resource type="Resource" script_class="itemObject" load_steps=4 format=3 uid="uid://dvulqbrvi51s6"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="1_w02ko"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Consumables/consumableEffect.gd" id="1_y5oec"]
+
+[sub_resource type="Resource" id="Resource_jyxai"]
+script = ExtResource("1_y5oec")
+effect = 0
+potency = 0.925
 
 [resource]
 script = ExtResource("1_w02ko")
 itemName = "Sticks"
-canStack = true
+canStack = false
+consumableEffects = Array[ExtResource("1_y5oec")]([SubResource("Resource_jyxai")])
