@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqmvss78c51hu"]
+[gd_scene load_steps=8 format=3 uid="uid://dqmvss78c51hu"]
 
-[ext_resource type="Texture2D" uid="uid://cmkr1drbraagm" path="res://Textures/Grids/Purple/texture_01.png" id="1_5jlrw"]
-[ext_resource type="PackedScene" uid="uid://svq4j021r5qu" path="res://Scenes/Player/player.tscn" id="2_u0me5"]
+[ext_resource type="Texture2D" uid="uid://cmkr1drbraagm" path="res://Textures/Grids/Purple/texture_01.png" id="1_yy50x"]
+[ext_resource type="PackedScene" uid="uid://svq4j021r5qu" path="res://Scenes/Player/player.tscn" id="2_ej1mq"]
+[ext_resource type="PackedScene" uid="uid://bdupb6dpjhg1f" path="res://Scenes/Inventory/groundItem.tscn" id="3_yrj4l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0vn5"]
-albedo_texture = ExtResource("1_5jlrw")
+albedo_texture = ExtResource("1_yy50x")
 uv1_triplanar = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig2t0"]
@@ -39,5 +40,8 @@ environment = SubResource("Environment_dotx8")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("2_u0me5")]
+[node name="Player" parent="." instance=ExtResource("2_ej1mq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0382996, 1, -0.0545827)
+
+[node name="GroundItem" parent="." instance=ExtResource("3_yrj4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6353, 0.242105, 4.35935)

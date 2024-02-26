@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="itemObject" load_steps=2 format=3 uid="uid://dvulqbrvi51s6"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="1_w02ko"]
+
+[resource]
+script = ExtResource("1_w02ko")
+itemName = "Sticks"
+canStack = true
