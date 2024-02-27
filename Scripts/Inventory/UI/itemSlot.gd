@@ -24,6 +24,10 @@ func setSlotValues():
 		
 		itemIcon.visible = true
 		itemIcon.texture = item.item.itemIcon
+		
+		for rar in inventoryUI.rarityDatabase.rarities:
+			if item.item.itemRarity == rar.rarityType:
+				itemRarity.color = rar.rarityColour
 	else:
 		itemRarity.visible = false
 		

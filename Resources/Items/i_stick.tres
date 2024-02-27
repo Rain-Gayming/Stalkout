@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="itemObject" load_steps=3 format=3 uid="uid://ddhgiyy4imcfb"]
 
-[ext_resource type="Texture2D" uid="uid://cpagufiy2a0i1" path="res://Sprites/stick.png" id="1_eroxo"]
-[ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="2_8yygs"]
+[ext_resource type="Texture2D" uid="uid://cpagufiy2a0i1" path="res://Sprites/stick.png" id="1_en844"]
+[ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="1_w02ko"]
 
 [resource]
-script = ExtResource("2_8yygs")
+script = ExtResource("1_w02ko")
 itemName = "Sticks"
 canStack = true
-itemIcon = ExtResource("1_eroxo")
+itemIcon = ExtResource("1_en844")
+itemRarity = 3
 consumableEffects = Array[Resource("res://Scripts/Inventory/Consumables/consumableEffect.gd")]([])

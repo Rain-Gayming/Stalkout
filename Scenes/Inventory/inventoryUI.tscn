@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnqemimj5vyvi"]
+[gd_scene load_steps=6 format=3 uid="uid://dnqemimj5vyvi"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/UI/inventoryUI.gd" id="1_ggen6"]
 [ext_resource type="PackedScene" uid="uid://dxpofdtic25tw" path="res://Scenes/Inventory/itemSlot.tscn" id="2_7wnn1"]
+[ext_resource type="Resource" uid="uid://di5j7ahnm2dxi" path="res://Resources/DB_Rarity.tres" id="2_ejumx"]
 [ext_resource type="Script" path="res://Scripts/Inventory/inventoryManager.gd" id="3_74tp4"]
 [ext_resource type="Resource" uid="uid://c4ygm0ypg2fia" path="res://Resources/Items/id_database.tres" id="3_bgm8r"]
 
@@ -14,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ggen6")
 inventoryManager = NodePath("Node")
+rarityDatabase = ExtResource("2_ejumx")
 itemSlot = ExtResource("2_7wnn1")
 slotGrid = NodePath("slotGrid")
 itemInput = NodePath("TextEdit")

@@ -3,6 +3,7 @@ class_name InventoryUI
 
 @export_category("References")
 @export var inventoryManager : InventoryManager
+@export var rarityDatabase : RarityDatabase
 
 @export_category("UI")
 @export var itemSlots : Array[itemSlot] = []

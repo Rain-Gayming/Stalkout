@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="RarityDatabase" load_steps=9 format=3 uid="uid://di5j7ahnm2dxi"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Rarity/rarity.gd" id="1_hdknl"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Rarity/rarityDatabase.gd" id="1_ksm0f"]
+
+[sub_resource type="Resource" id="Resource_bp08l"]
+script = ExtResource("1_hdknl")
+rarityType = 0
+rarityColour = Color(0.67451, 0.67451, 0.67451, 0.588235)
+
+[sub_resource type="Resource" id="Resource_7trs1"]
+script = ExtResource("1_hdknl")
+rarityType = 1
+rarityColour = Color(0, 0.554526, 9.62615e-07, 0.588235)
+
+[sub_resource type="Resource" id="Resource_fb4yl"]
+script = ExtResource("1_hdknl")
+rarityType = 2
+rarityColour = Color(0.254902, 0.556863, 0.87451, 0.588235)
+
+[sub_resource type="Resource" id="Resource_qfhm5"]
+script = ExtResource("1_hdknl")
+rarityType = 3
+rarityColour = Color(0.551248, 7.11854e-05, 0.476883, 0.588235)
+
+[sub_resource type="Resource" id="Resource_gd3wv"]
+script = ExtResource("1_hdknl")
+rarityType = 4
+rarityColour = Color(0.627814, 0.306311, 0.0641814, 0.588235)
+
+[sub_resource type="Resource" id="Resource_fqu8j"]
+script = ExtResource("1_hdknl")
+rarityType = 5
+rarityColour = Color(0.584314, 0, 0.0980392, 0.588235)
+
+[resource]
+script = ExtResource("1_ksm0f")
+rarities = Array[ExtResource("1_hdknl")]([SubResource("Resource_bp08l"), SubResource("Resource_7trs1"), SubResource("Resource_fb4yl"), SubResource("Resource_qfhm5"), SubResource("Resource_gd3wv"), SubResource("Resource_fqu8j")])

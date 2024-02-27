@@ -1,24 +1,25 @@
 [gd_resource type="Resource" script_class="itemObject" load_steps=6 format=3 uid="uid://dvulqbrvi51s6"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="1_w02ko"]
-[ext_resource type="Script" path="res://Scripts/Inventory/Consumables/consumableEffect.gd" id="1_y5oec"]
-[ext_resource type="Texture2D" uid="uid://cedp84ndb23ev" path="res://Sprites/Apple.png" id="2_olllu"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Consumables/consumableEffect.gd" id="1_w0f4g"]
+[ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="2_2x7cc"]
+[ext_resource type="Texture2D" uid="uid://cedp84ndb23ev" path="res://Sprites/Apple.png" id="2_weitg"]
 
 [sub_resource type="Resource" id="Resource_exrwf"]
-script = ExtResource("1_y5oec")
+script = ExtResource("1_w0f4g")
 effect = 0
 potency = 5.0
 negative = false
 
 [sub_resource type="Resource" id="Resource_0fkct"]
-script = ExtResource("1_y5oec")
+script = ExtResource("1_w0f4g")
 effect = 1
 potency = 10.0
 negative = false
 
 [resource]
-script = ExtResource("1_w02ko")
+script = ExtResource("2_2x7cc")
 itemName = "Apple"
 canStack = true
-itemIcon = ExtResource("2_olllu")
-consumableEffects = Array[ExtResource("1_y5oec")]([SubResource("Resource_exrwf"), SubResource("Resource_0fkct")])
+itemIcon = ExtResource("2_weitg")
+itemRarity = 4
+consumableEffects = Array[ExtResource("1_w0f4g")]([SubResource("Resource_exrwf"), SubResource("Resource_0fkct")])
