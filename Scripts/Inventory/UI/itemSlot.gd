@@ -1,6 +1,9 @@
 extends Node
 class_name itemSlot
 
+@export_category("References")
+@export var inventoryUI : InventoryUI
+
 @export_category("Items")
 @export var item : inventoryItem
 
@@ -22,3 +25,7 @@ func setSlotValues():
 		itemRarity.visible = false
 		
 		itemIcon.visible = false
+
+
+func itemSlotPressed():
+	inventoryUI.selectedItemSlot(self)

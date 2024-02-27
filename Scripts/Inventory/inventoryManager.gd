@@ -2,7 +2,7 @@ extends Node
 class_name InventoryManager
 
 @export_category("References")
-@export var inventoryUserInterface : InventoryUI
+@export var inventoryUserInterface : Control
 
 @export_category("Items")
 @export var inventoryItems : Array[inventoryItem]
