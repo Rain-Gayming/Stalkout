@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="itemDatabase" load_steps=3 format=3 uid="uid://c4ygm0ypg2fia"]
+[gd_resource type="Resource" script_class="itemDatabase" load_steps=4 format=3 uid="uid://c4ygm0ypg2fia"]
 
+[ext_resource type="Resource" uid="uid://dvulqbrvi51s6" path="res://Resources/Items/i_apple.tres" id="1_0opsy"]
 [ext_resource type="Script" path="res://Scripts/Inventory/itemDatabase.gd" id="1_4jd2s"]
-[ext_resource type="Resource" uid="uid://dvulqbrvi51s6" path="res://Resources/Items/i_stick.tres" id="1_t8r4v"]
+[ext_resource type="Resource" uid="uid://ddhgiyy4imcfb" path="res://Resources/Items/i_stick.tres" id="1_t8r4v"]
 
 [resource]
 script = ExtResource("1_4jd2s")
-items = Array[Resource("res://Scripts/Inventory/itemObject.gd")]([ExtResource("1_t8r4v")])
+items = Array[Resource("res://Scripts/Inventory/itemObject.gd")]([ExtResource("1_0opsy"), ExtResource("1_t8r4v")])

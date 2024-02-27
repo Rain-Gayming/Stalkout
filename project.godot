@@ -13,7 +13,6 @@ config_version=5
 config/name="Survival Game"
 run/main_scene="res://Scenes/Inventory/inventoryUI.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://Sprites/icon.svg"
 
 [autoload]
 

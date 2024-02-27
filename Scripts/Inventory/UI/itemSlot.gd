@@ -15,6 +15,9 @@ func _ready():
 	item = inventoryItem.new()
 	setSlotValues()
 
+func setSlotInventory(inventory : InventoryUI):
+	inventoryUI = inventory
+
 func setSlotValues():
 	if item.item:
 		itemRarity.visible = true
@@ -28,4 +31,4 @@ func setSlotValues():
 
 
 func itemSlotPressed():
-	inventoryUI.selectedItemSlot(self)
+	inventoryUI.itemSlotSelected(self)

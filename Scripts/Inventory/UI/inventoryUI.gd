@@ -22,6 +22,7 @@ func _ready():
 		var newSlot = itemSlot.instantiate()
 		slotGrid.add_child(newSlot)
 		itemSlots.append(newSlot)
+		newSlot.setSlotInventory(self)
 
 func findNextEmptySlot():
 	for slot in itemSlots:
@@ -38,19 +39,22 @@ func debugItem():
 			inventoryManager.addItem(item, 1)
 
 func itemSlotSelected(slotSelected : itemSlot):
+	#if slot already selected swap the items
 	if slotFrom:
-		if slotSelected.item.item:
-			if slotSelected.item.item == slotFrom.item.item:
-				if slotFrom.item.item.canStack:
-					slotSelected.item.amount += slotFrom.amount
-					clearSwapInfo()
-				else:
-					swapItems(slotSelected)
-			else:
-				swapItems(slotSelected)
+		# to do:
+		# stack stackables
+		# swap non stackables
+		# swap items of different types
+		if slotFrom.item.item == slotSelected.item.item and slotFrom.item.item.canStack:
+			# stack
+			slotSelected.item.amount += slotFrom.item.amount
+			slotFrom.item = inventoryItem.new()
+			slotFrom.setSlotValues()
+			slotSelected.setSlotValues()
+			pass
 		else:
-			slotSelected.item = slotFrom.item
-			clearSwapInfo()
+			#swap
+			swapItems(slotSelected)
 	else:
 		slotFrom = slotSelected
 
@@ -58,8 +62,11 @@ func swapItems(slotSelected : itemSlot):
 	storedItem = slotSelected.item
 	slotSelected.item = slotFrom.item
 	slotFrom.item = storedItem
+	slotSelected.setSlotValues()
 	clearSwapInfo()
 
 func clearSwapInfo():
+	slotFrom.setSlotValues()
+	
 	slotFrom = null
 	storedItem = inventoryItem.new()

@@ -43,7 +43,6 @@ script = ExtResource("3_ucdgr")
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("5_r0tjs")
-maxItems = 30
 
 [node name="StatManager" type="Node3D" parent="."]
 script = ExtResource("6_8rx4u")

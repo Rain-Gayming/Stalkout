@@ -1,18 +1,11 @@
-[gd_resource type="Resource" script_class="itemObject" load_steps=5 format=3 uid="uid://dvulqbrvi51s6"]
+[gd_resource type="Resource" script_class="itemObject" load_steps=3 format=3 uid="uid://ddhgiyy4imcfb"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="1_w02ko"]
-[ext_resource type="Script" path="res://Scripts/Inventory/Consumables/consumableEffect.gd" id="1_y5oec"]
-[ext_resource type="Texture2D" uid="uid://cvy0ain4y0to8" path="res://Sprites/icon.svg" id="2_x0pkb"]
-
-[sub_resource type="Resource" id="Resource_jyxai"]
-script = ExtResource("1_y5oec")
-effect = 0
-potency = 15.0
-negative = false
+[ext_resource type="Texture2D" uid="uid://cpagufiy2a0i1" path="res://Sprites/stick.png" id="1_eroxo"]
+[ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="2_8yygs"]
 
 [resource]
-script = ExtResource("1_w02ko")
+script = ExtResource("2_8yygs")
 itemName = "Sticks"
 canStack = true
-itemIcon = ExtResource("2_x0pkb")
-consumableEffects = Array[ExtResource("1_y5oec")]([SubResource("Resource_jyxai")])
+itemIcon = ExtResource("1_eroxo")
+consumableEffects = Array[Resource("res://Scripts/Inventory/Consumables/consumableEffect.gd")]([])
