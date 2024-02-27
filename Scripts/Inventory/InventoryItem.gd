@@ -16,6 +16,13 @@ func useItem():
 	var itemUsed = false
 	
 	if item.consumableEffects.size() > 0:
+		for effect in item.consumableEffects:
+			if effect.effect == GlobalEnums.consumableEffectEnum.thirst:
+				SignalManager.emitThirstChange(effect.potency, effect.negative)
+			if effect.effect == GlobalEnums.consumableEffectEnum.hunger:
+				SignalManager.emitHungerChange(effect.potency, effect.negative)
+			if effect.effect == GlobalEnums.consumableEffectEnum.sleep:
+				SignalManager.emitThirstChange(effect.potency, effect.negative)
 		itemUsed = true
 	
 	if itemUsed:

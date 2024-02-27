@@ -6,7 +6,8 @@
 [sub_resource type="Resource" id="Resource_jyxai"]
 script = ExtResource("1_y5oec")
 effect = 0
-potency = 0.925
+potency = 15.0
+negative = false
 
 [resource]
 script = ExtResource("1_w02ko")

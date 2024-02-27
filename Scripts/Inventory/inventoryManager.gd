@@ -31,7 +31,6 @@ func addNewItem(item : itemObject, amount : int):
 	
 	inventoryItems.append(newItem)
 	itemObjects.append(item)
-	print("picking up " + item.itemName)
 
 func removeItem(item : inventoryItem):
 	var itemLocation = inventoryItems.find(item)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://svq4j021r5qu"]
+[gd_scene load_steps=9 format=3 uid="uid://svq4j021r5qu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xtxbh"]
 [ext_resource type="Script" path="res://Scripts/Player/Camera/camera.gd" id="2_ftnmb"]
 [ext_resource type="Script" path="res://Scripts/Player/Camera/cameraRaycaster.gd" id="3_ko3mq"]
-[ext_resource type="Script" path="res://Scripts/Player/CursorManager.gd" id="3_ucdgr"]
+[ext_resource type="Script" path="res://Scripts/Player/cursorManager.gd" id="3_ucdgr"]
 [ext_resource type="Script" path="res://Scripts/Inventory/inventoryManager.gd" id="5_r0tjs"]
+[ext_resource type="Script" path="res://Scripts/Stats/statManager.gd" id="6_8rx4u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yysl2"]
 
@@ -42,3 +43,17 @@ script = ExtResource("3_ucdgr")
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("5_r0tjs")
+maxItems = 30
+
+[node name="StatManager" type="Node3D" parent="."]
+script = ExtResource("6_8rx4u")
+isPlayer = true
+currentThirst = 100.0
+maxThirst = 100.0
+thirstDepletion = 1.0
+currentHunger = 100.0
+maxHunger = 100.0
+hungerDepletion = 0.5
+currentSleep = 100.0
+maxSleep = 100.0
+sleepDepletion = 0.75
