@@ -44,12 +44,15 @@ func _process(delta):
 	if !cursorManager.isPaused:
 		moveTypeDetection()
 		
+		#if the player is sprinting and moving lower their stamina
 		if currentMoveType == MoveType.sprint and direction != Vector3.ZERO:
 			currentStamina -= staminaDepletion * delta
 			currentStamina = clamp(currentStamina, 0, maxStamina)
 			
+			#if the stamina is less than or equal to 0 and the player is sprinting, make them run
 			if currentStamina <= 0:
 				changeMoveType(MoveType.run)
+		#if the player is not sprinting regen their stamina
 		elif currentStamina < maxStamina and direction == Vector3.ZERO:
 			currentStamina += staminaRegen * delta
 			currentStamina = clamp(currentStamina, 0, maxStamina)

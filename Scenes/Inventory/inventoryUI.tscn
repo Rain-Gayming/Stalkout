@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnqemimj5vyvi"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/UI/inventoryUI.gd" id="1_ggen6"]
+[ext_resource type="PackedScene" uid="uid://dxpofdtic25tw" path="res://Scenes/Inventory/itemSlot.tscn" id="2_7wnn1"]
+[ext_resource type="Script" path="res://Scripts/Inventory/inventoryManager.gd" id="3_74tp4"]
+[ext_resource type="Resource" uid="uid://c4ygm0ypg2fia" path="res://Resources/Items/id_database.tres" id="3_bgm8r"]
+
+[node name="InventoryUi" type="Control" node_paths=PackedStringArray("inventoryManager", "slotGrid", "itemInput")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ggen6")
+inventoryManager = NodePath("Node")
+itemSlot = ExtResource("2_7wnn1")
+slotGrid = NodePath("slotGrid")
+itemInput = NodePath("TextEdit")
+database = ExtResource("3_bgm8r")
+
+[node name="slotGrid" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_direction = 1
+layout_mode = 2
+offset_left = 273.0
+offset_top = 401.0
+offset_right = 723.0
+offset_bottom = 536.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 17
+columns = 10
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("inventoryUserInterface")]
+script = ExtResource("3_74tp4")
+inventoryUserInterface = NodePath("..")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 45.0
+offset_right = 197.0
+offset_bottom = 79.0
+placeholder_text = "Item Name..."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 80.0
+offset_right = 196.0
+offset_bottom = 100.0
+text = "Add Item"
+
+[connection signal="pressed" from="Button" to="." method="debugItem"]

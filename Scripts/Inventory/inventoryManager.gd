@@ -1,9 +1,13 @@
 extends Node
+class_name InventoryManager
+
+@export_category("References")
+@export var inventoryUserInterface : InventoryUI
 
 @export_category("Items")
 @export var inventoryItems : Array[inventoryItem]
 @export var itemObjects : Array[itemObject]
-@export var maxItems : int
+@export var maxItems : int = 30
 
 func _ready():
 	SignalManager.connect("addItem", addItem)
@@ -28,6 +32,11 @@ func addItem(item : itemObject, amount : int):
 func addNewItem(item : itemObject, amount : int):
 	var newItem = inventoryItem.new()
 	newItem.setInfo(item, amount)
+	
+	if inventoryUserInterface:
+		var emptySlot = inventoryUserInterface.findNextEmptySlot()
+		inventoryUserInterface.setSlotItem(newItem, emptySlot)
+		
 	
 	inventoryItems.append(newItem)
 	itemObjects.append(item)
