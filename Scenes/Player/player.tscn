@@ -11,13 +11,15 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3iei4"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cursorManager")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cursorManager", "statManager")]
 script = ExtResource("1_xtxbh")
 cursorManager = NodePath("CursorManager")
+statManager = NodePath("StatManager")
 normalScale = Vector3(1, 1, 1)
 crouchScale = Vector3(1, 0.65, 1)
-staminaRegen = 12.0
-staminaDepletion = 15.0
+crouchSpeed = 1.0
+runSpeed = 3.0
+sprintSpeed = 5.0
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_yysl2")
@@ -35,6 +37,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 target_position = Vector3(0, -2, 0)
 script = ExtResource("3_ko3mq")
 
+[node name="EquipmentPoint" type="Node3D" parent="Head"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/EquipmentPoint"]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_3iei4")
 
@@ -47,6 +53,10 @@ script = ExtResource("5_r0tjs")
 [node name="StatManager" type="Node3D" parent="."]
 script = ExtResource("6_8rx4u")
 isPlayer = true
+currentHealth = 100.0
+maxHealth = 100.0
+passiveHealthRegen = 0.5
+currentStamina = 100.0
 currentThirst = 100.0
 maxThirst = 100.0
 thirstDepletion = 1.0

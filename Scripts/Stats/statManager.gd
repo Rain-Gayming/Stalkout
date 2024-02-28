@@ -1,7 +1,18 @@
 extends Node
-
+class_name StatManager
 @export_category("References")
 @export var isPlayer : bool
+
+@export_category("Health")
+@export var currentHealth : float
+@export var maxHealth : float
+@export var passiveHealthRegen : float
+
+@export_category("Stamina")
+@export var currentStamina : float
+@export var maxStamina : float = 100
+@export var staminaRegen : float = 1.0 
+@export var staminaDepletion : float = 1.0
 
 @export_category("Thirst")
 @export var currentThirst : float
@@ -22,6 +33,8 @@ func _ready():
 	currentThirst = maxThirst
 	currentHunger = maxHunger
 	currentSleep = maxSleep
+	currentStamina = maxStamina
+	currentHealth = maxHealth
 	
 	if isPlayer:
 		SignalManager.connect("thirstChange", ChangeThirst)
@@ -58,3 +71,11 @@ func ChangeSleep(value : float, negative : bool):
 	else:
 		currentSleep += value
 	currentSleep = clamp(currentSleep, 0, maxSleep)
+
+func ChangeStamina(value : float, negative : bool):
+	if negative:
+		currentStamina -= value
+	else:
+		currentStamina += value
+	currentStamina = clamp(currentStamina, 0, maxStamina)
+	

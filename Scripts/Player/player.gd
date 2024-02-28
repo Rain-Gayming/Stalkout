@@ -9,17 +9,13 @@ enum MoveType
 
 @export_category("References")
 @export var cursorManager : CursorManager
+@export var statManager : StatManager
 
 @export_category("Movement")
 @export var currentMoveType : MoveType
 @export var normalScale : Vector3
 @export var crouchScale : Vector3
 
-@export_category("Stamina")
-@export var currentStamina : float
-@export var maxStamina : float = 100
-@export var staminaRegen : float = 1.0 
-@export var staminaDepletion : float = 1.0
 
 @export_category("Movement Speed")
 @export var currentSpeed : float = 5.0
@@ -37,7 +33,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	changeMoveType(MoveType.run)
-	currentStamina = maxStamina
 
 func _process(delta):
 	
@@ -46,16 +41,13 @@ func _process(delta):
 		
 		#if the player is sprinting and moving lower their stamina
 		if currentMoveType == MoveType.sprint and direction != Vector3.ZERO:
-			currentStamina -= staminaDepletion * delta
-			currentStamina = clamp(currentStamina, 0, maxStamina)
-			
+			statManager.ChangeStamina(statManager.staminaDepletion, true)
 			#if the stamina is less than or equal to 0 and the player is sprinting, make them run
-			if currentStamina <= 0:
+			if statManager.currentStamina <= 0:
 				changeMoveType(MoveType.run)
 		#if the player is not sprinting regen their stamina
-		elif currentStamina < maxStamina and direction == Vector3.ZERO:
-			currentStamina += staminaRegen * delta
-			currentStamina = clamp(currentStamina, 0, maxStamina)
+		elif statManager.currentStamina < statManager.maxStamina and direction == Vector3.ZERO:
+			statManager.ChangeStamina(statManager.staminaRegen, false)
 		
 		#detects if the player is below the map
 		if position.y <= -10:
