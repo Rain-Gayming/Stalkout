@@ -14,7 +14,7 @@ func _ready():
 	SignalManager.connect("removeItem", removeItem)
 
 func _process(delta):
-	if Input.is_action_just_pressed("item1"):
+	if Input.is_action_just_pressed("shortcut1"):
 		inventoryItems[0].useItem()
 
 func addItem(item : itemObject, amount : int):

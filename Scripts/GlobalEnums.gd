@@ -18,6 +18,26 @@ enum rarity
 	mythic
 }
 
+enum weaponType
+{
+	smallMelee,
+	mediumMelee,
+	largeMelee,
+	pistol,
+	assaultRifle,
+	marksmanRifle,
+	shotgun,
+	sniperRifle,
+	subMachineGun,
+}
+
+enum fireType
+{
+	fullAuto,
+	semiAuto,
+	burst,
+}
+
 enum season
 {
 	spring,

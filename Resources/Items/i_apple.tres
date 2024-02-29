@@ -22,4 +22,6 @@ itemName = "Apple"
 canStack = true
 itemIcon = ExtResource("2_weitg")
 itemRarity = 0
+weight = 0.0
 consumableEffects = Array[ExtResource("1_w0f4g")]([SubResource("Resource_exrwf"), SubResource("Resource_0fkct")])
+velocity = 0.0

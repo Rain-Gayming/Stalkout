@@ -9,4 +9,6 @@ itemName = "Stick"
 canStack = true
 itemIcon = ExtResource("1_en844")
 itemRarity = 0
+weight = 0.0
 consumableEffects = Array[Resource("res://Scripts/Inventory/Consumables/consumableEffect.gd")]([])
+velocity = 0.0

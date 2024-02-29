@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://svq4j021r5qu"]
+[gd_scene load_steps=10 format=3 uid="uid://svq4j021r5qu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xtxbh"]
 [ext_resource type="Script" path="res://Scripts/Player/Camera/camera.gd" id="2_ftnmb"]
 [ext_resource type="Script" path="res://Scripts/Player/Camera/cameraRaycaster.gd" id="3_ko3mq"]
 [ext_resource type="Script" path="res://Scripts/Player/cursorManager.gd" id="3_ucdgr"]
+[ext_resource type="PackedScene" uid="uid://dtrjxvlqfm5jt" path="res://Models/Items/Guns/Assault Rifles/M4A1.tscn" id="4_jpthw"]
 [ext_resource type="Script" path="res://Scripts/Inventory/inventoryManager.gd" id="5_r0tjs"]
 [ext_resource type="Script" path="res://Scripts/Stats/statManager.gd" id="6_8rx4u"]
 
@@ -39,7 +40,8 @@ script = ExtResource("3_ko3mq")
 
 [node name="EquipmentPoint" type="Node3D" parent="Head"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/EquipmentPoint"]
+[node name="M4A1" parent="Head/EquipmentPoint" instance=ExtResource("4_jpthw")]
+transform = Transform3D(-0.00209428, 0, 0.119982, 0, 0.12, 0, -0.119982, 0, -0.00209428, 0.102506, -0.105335, -0.216831)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_3iei4")
