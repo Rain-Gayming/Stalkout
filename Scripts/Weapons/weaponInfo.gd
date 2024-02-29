@@ -14,3 +14,4 @@ class_name WeaponInfo
 @export var bulletObject : PackedScene
 @export var reloadTime : float
 @export var maxAmmo : int = 30
+@export var burstShootAmount : int
