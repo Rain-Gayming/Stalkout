@@ -46,6 +46,11 @@ enum season
 	winter
 }
 
+enum bulletType
+{
+	fmj,
+}
+
 enum weather
 {
 	clear,

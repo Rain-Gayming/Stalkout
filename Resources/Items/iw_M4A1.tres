@@ -10,10 +10,11 @@ isRanged = true
 attackSpeed = 0.1
 weaponType = 4
 damage = 0.0
-firingType = Array[int]([1, 2, 0])
+firingType = Array[int]([1, 0])
 bulletObject = ExtResource("2_y5uj2")
 reloadTime = 0.0
 maxAmmo = 30
+burstShootAmount = 0
 
 [resource]
 script = ExtResource("1_p1bci")

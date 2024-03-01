@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 
 SignalManager="*res://Scripts/signalManager.gd"
 GlobalEnums="*res://Scripts/globalEnums.gd"
+cursorManager="*res://Scripts/Player/cursorManager.gd"
 
 [filesystem]
 

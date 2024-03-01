@@ -1,5 +1,4 @@
 extends Node
-class_name CursorManager
 
 @export var isPaused : bool = false
 

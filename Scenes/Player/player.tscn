@@ -12,24 +12,27 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3iei4"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cursorManager", "statManager")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("statManager")]
 script = ExtResource("1_xtxbh")
-cursorManager = NodePath("CursorManager")
 statManager = NodePath("StatManager")
+currentMoveType = null
 normalScale = Vector3(1, 1, 1)
 crouchScale = Vector3(1, 0.65, 1)
+currentSpeed = null
 crouchSpeed = 1.0
 runSpeed = 3.0
 sprintSpeed = 5.0
+jumpHeight = null
+direction = null
+inputDir = null
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_yysl2")
 
-[node name="Head" type="Node3D" parent="." node_paths=PackedStringArray("body", "cursorManager")]
+[node name="Head" type="Node3D" parent="." node_paths=PackedStringArray("body")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.708611, 0)
 script = ExtResource("2_ftnmb")
 body = NodePath("..")
-cursorManager = NodePath("../CursorManager")
 
 [node name="Camera" type="Camera3D" parent="Head"]
 
@@ -41,9 +44,10 @@ script = ExtResource("3_ko3mq")
 [node name="EquipmentPoint" type="Node3D" parent="Head"]
 
 [node name="M4A1" parent="Head/EquipmentPoint" instance=ExtResource("4_jpthw")]
-transform = Transform3D(-0.00209428, 0, 0.119982, 0, 0.12, 0, -0.119982, 0, -0.00209428, 0.102506, -0.105335, -0.216831)
+transform = Transform3D(-0.0174524, 0, 0.999848, 0, 1, 0, -0.999848, 0, -0.0174524, 0.102506, -0.143062, -0.509629)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_3iei4")
 
 [node name="CursorManager" type="Node3D" parent="."]

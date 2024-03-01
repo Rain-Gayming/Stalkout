@@ -8,7 +8,6 @@ enum MoveType
 }
 
 @export_category("References")
-@export var cursorManager : CursorManager
 @export var statManager : StatManager
 
 @export_category("Movement")

@@ -2,7 +2,6 @@ extends Node3D
 
 @export_category("References")
 @export var body : Node3D
-@export var cursorManager : CursorManager
 
 @export_category("Camera Sensitivity")
 @export var mouseSensX : float = 0.4

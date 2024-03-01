@@ -17,30 +17,31 @@ func _ready():
 	weaponInfo = itemRef.item.weaponInfo
 
 func _process(delta):
-	if attackTime > 0:
-		attackTime -= delta
-	if Input.is_action_pressed("mainAttack"):
-		if attackTime <= 0:
-			if itemRef.item.weaponInfo.isRanged and currentAmmo > 0:
-				if currentFireType == GlobalEnums.fireType.fullAuto:
-					rangedAttack(true)
-				elif currentFireType == GlobalEnums.fireType.semiAuto:
-					if hasAttacked != true:
-						rangedAttack(false)
-						
-				elif currentFireType == GlobalEnums.fireType.burst:
-					for shot in weaponInfo.burstShootAmount:
-						rangedAttack(false)
-			else:
-				meleeAttack() 
-	if Input.is_action_just_released("mainAttack"):
-		hasAttacked = false
-	
-	if Input.is_action_just_pressed("fireMode"):
-		swapFireMode()
-	
-	if Input.is_action_just_pressed("reload"):
-		reload()
+	if !cursorManager.isPaused:
+		if attackTime > 0:
+			attackTime -= delta
+		if Input.is_action_pressed("mainAttack"):
+			if attackTime <= 0:
+				if itemRef.item.weaponInfo.isRanged and currentAmmo > 0:
+					if currentFireType == GlobalEnums.fireType.fullAuto:
+						rangedAttack(true)
+					elif currentFireType == GlobalEnums.fireType.semiAuto:
+						if hasAttacked != true:
+							rangedAttack(false)
+							
+					elif currentFireType == GlobalEnums.fireType.burst:
+						for shot in weaponInfo.burstShootAmount:
+							rangedAttack(false)
+				else:
+					meleeAttack() 
+		if Input.is_action_just_released("mainAttack"):
+			hasAttacked = false
+		
+		if Input.is_action_just_pressed("fireMode"):
+			swapFireMode()
+		
+		if Input.is_action_just_pressed("reload"):
+			reload()
 
 func rangedAttack(auto : bool):
 	currentAmmo -= 1
