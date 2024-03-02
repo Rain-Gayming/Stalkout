@@ -49,9 +49,8 @@ mesh = SubResource("CapsuleMesh_3iei4")
 [node name="CursorManager" type="Node3D" parent="."]
 script = ExtResource("3_ucdgr")
 
-[node name="Inventory" type="Node3D" parent="." node_paths=PackedStringArray("inventoryVisibility", "inventoryUserInterface")]
+[node name="Inventory" type="Node3D" parent="." node_paths=PackedStringArray("inventoryUserInterface")]
 script = ExtResource("5_r0tjs")
-inventoryVisibility = NodePath("")
 inventoryUserInterface = NodePath("InventoryUi")
 
 [node name="InventoryUi" parent="Inventory" instance=ExtResource("7_bef0u")]

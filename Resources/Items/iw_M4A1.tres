@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="itemObject" load_steps=5 format=3 uid="uid://braxh80b4bkid"]
+[gd_resource type="Resource" script_class="ItemObject" load_steps=5 format=3 uid="uid://braxh80b4bkid"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="1_p1bci"]
 [ext_resource type="PackedScene" uid="uid://defsibji3g0kp" path="res://Models/Items/Guns/bullet.tscn" id="2_y5uj2"]
