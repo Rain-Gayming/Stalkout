@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://svq4j021r5qu"]
+[gd_scene load_steps=11 format=3 uid="uid://svq4j021r5qu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xtxbh"]
 [ext_resource type="Script" path="res://Scripts/Player/Camera/camera.gd" id="2_ftnmb"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dtrjxvlqfm5jt" path="res://Models/Items/Guns/Assault Rifles/M4A1.tscn" id="4_jpthw"]
 [ext_resource type="Script" path="res://Scripts/Inventory/inventoryManager.gd" id="5_r0tjs"]
 [ext_resource type="Script" path="res://Scripts/Stats/statManager.gd" id="6_8rx4u"]
+[ext_resource type="PackedScene" uid="uid://dnqemimj5vyvi" path="res://Scenes/Inventory/inventoryUI.tscn" id="7_bef0u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yysl2"]
 
@@ -15,16 +16,11 @@
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("statManager")]
 script = ExtResource("1_xtxbh")
 statManager = NodePath("StatManager")
-currentMoveType = null
 normalScale = Vector3(1, 1, 1)
 crouchScale = Vector3(1, 0.65, 1)
-currentSpeed = null
 crouchSpeed = 1.0
 runSpeed = 3.0
 sprintSpeed = 5.0
-jumpHeight = null
-direction = null
-inputDir = null
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_yysl2")
@@ -44,7 +40,7 @@ script = ExtResource("3_ko3mq")
 [node name="EquipmentPoint" type="Node3D" parent="Head"]
 
 [node name="M4A1" parent="Head/EquipmentPoint" instance=ExtResource("4_jpthw")]
-transform = Transform3D(-0.0174524, 0, 0.999848, 0, 1, 0, -0.999848, 0, -0.0174524, 0.102506, -0.143062, -0.509629)
+transform = Transform3D(-0.0174524, 0, 0.999848, 0, 1, 0, -0.999848, 0, -0.0174524, 0.213656, -0.193359, -0.509629)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -53,8 +49,12 @@ mesh = SubResource("CapsuleMesh_3iei4")
 [node name="CursorManager" type="Node3D" parent="."]
 script = ExtResource("3_ucdgr")
 
-[node name="Inventory" type="Node3D" parent="."]
+[node name="Inventory" type="Node3D" parent="." node_paths=PackedStringArray("inventoryVisibility", "inventoryUserInterface")]
 script = ExtResource("5_r0tjs")
+inventoryVisibility = NodePath("")
+inventoryUserInterface = NodePath("InventoryUi")
+
+[node name="InventoryUi" parent="Inventory" instance=ExtResource("7_bef0u")]
 
 [node name="StatManager" type="Node3D" parent="."]
 script = ExtResource("6_8rx4u")

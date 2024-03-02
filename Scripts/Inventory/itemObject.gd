@@ -1,5 +1,5 @@
 extends Resource
-class_name itemObject
+class_name ItemObject
 
 @export_category("Basic Info")
 @export var itemName : String

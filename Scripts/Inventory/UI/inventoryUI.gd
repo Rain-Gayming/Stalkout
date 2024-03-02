@@ -6,6 +6,7 @@ class_name InventoryUI
 @export var rarityDatabase : RarityDatabase
 
 @export_category("UI")
+@export var inventoryUI : Control
 @export var itemSlots : Array[itemSlot] = []
 @export var itemSlot : PackedScene
 @export var slotGrid : GridContainer
@@ -30,6 +31,17 @@ func findNextEmptySlot():
 		if !slot.item.item:
 			return slot 
 
+func _process(delta):
+	if Input.is_action_just_pressed("inventory"):
+		CursorManager.togglePause()
+		toggleUI(CursorManager.isPaused)
+
+func toggleUI(show : bool):
+	if show:
+		inventoryUI.show()
+	else:
+		inventoryUI.hide()
+		
 func setSlotItem(item : inventoryItem, itemSlotSet : itemSlot):
 	itemSlotSet.item = item
 	itemSlotSet.setSlotValues()

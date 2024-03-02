@@ -1,10 +1,12 @@
 extends Resource
 class_name inventoryItem
 
-@export var item : itemObject
+@export var item : ItemObject
 @export var amount : int
 
-func setInfo(iItem : itemObject, iAmount : int):
+@export var weaponAttachments : WeaponAttachments;
+
+func setInfo(iItem : ItemObject, iAmount : int):
 	if iItem:
 		if iAmount <= 0:
 			iAmount = 1

@@ -1,6 +1,7 @@
 extends RigidBody3D
 
-@export var bulletItem : itemObject
+@export var bulletItem : ItemObject
 
 func _ready():
-	linear_velocity = (-basis.z * bulletItem.velocity) * 10
+	mass = bulletItem.weight
+	linear_velocity = (-basis.z * bulletItem.bulletInfo.velocity) * 10

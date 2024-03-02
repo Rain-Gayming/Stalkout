@@ -8,7 +8,7 @@ signal thirstChange(value, negative)
 signal hungerChange(value, negative)
 signal sleepChange(value, negative)
 
-func emitAddItem(item: itemObject, amount: int):
+func emitAddItem(item: ItemObject, amount: int):
 	emit_signal("addItem", item, amount)
 
 func emitRemoveItem(iitem: inventoryItem):

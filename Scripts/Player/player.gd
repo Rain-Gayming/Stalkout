@@ -35,7 +35,7 @@ func _ready():
 
 func _process(delta):
 	
-	if !cursorManager.isPaused:
+	if !CursorManager.isPaused:
 		moveTypeDetection()
 		
 		#if the player is sprinting and moving lower their stamina
@@ -79,7 +79,7 @@ func changeMoveType(moveType : MoveType):
 
 func _physics_process(delta):
 	
-	if !cursorManager.isPaused:
+	if !CursorManager.isPaused:
 		#gravity
 		if not is_on_floor():
 			velocity.y -= gravity * delta

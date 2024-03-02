@@ -1,4 +1,4 @@
 extends Resource
 class_name itemDatabase
 
-@export var items : Array[itemObject] = []
+@export var items : Array[ItemObject] = []

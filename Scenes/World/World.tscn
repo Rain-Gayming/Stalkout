@@ -43,6 +43,11 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_ej1mq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0382996, 1, -0.0545827)
+currentMoveType = 0
+currentSpeed = 5.0
+jumpHeight = 4.5
+direction = Vector3(0, 0, 0)
+inputDir = Vector2(0, 0)
 
 [node name="GroundItem" parent="." instance=ExtResource("3_yrj4l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6353, 0.242105, 4.35935)

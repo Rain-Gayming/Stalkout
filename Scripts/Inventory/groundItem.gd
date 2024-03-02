@@ -2,7 +2,7 @@ extends Node
 class_name groundItem
 
 @export_category("Item")
-@export var item : itemObject
+@export var item : ItemObject
 @export var amount : int
 
 static var _item

@@ -8,7 +8,7 @@ extends Node3D
 @export var mouseSensY : float = 0.4
 
 func _input(event):
-	if !cursorManager.isPaused:
+	if !CursorManager.isPaused:
 		if event is InputEventMouseMotion:
 			body.rotate_y(deg_to_rad(-event.relative.x * mouseSensX))
 			rotate_x(deg_to_rad(-event.relative.y * mouseSensY))

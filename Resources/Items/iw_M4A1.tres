@@ -24,4 +24,3 @@ itemRarity = 2
 weight = 15.0
 consumableEffects = Array[Resource("res://Scripts/Inventory/Consumables/consumableEffect.gd")]([])
 weaponInfo = SubResource("Resource_h3oh0")
-velocity = 0.0

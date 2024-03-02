@@ -15,9 +15,10 @@ class_name WeaponManager
 
 func _ready():
 	weaponInfo = itemRef.item.weaponInfo
+	currentAmmo = itemRef.weaponAttachments.magazine.ammoInMag.size()
 
 func _process(delta):
-	if !cursorManager.isPaused:
+	if !CursorManager.isPaused:
 		if attackTime > 0:
 			attackTime -= delta
 		if Input.is_action_pressed("mainAttack"):
@@ -44,16 +45,21 @@ func _process(delta):
 			reload()
 
 func rangedAttack(auto : bool):
-	currentAmmo -= 1
 	attackTime = weaponInfo.attackSpeed
+	
 	var newBullet = weaponInfo.bulletObject.instantiate()
 	newBullet.transform.origin = muzzlePoint.global_position
 	newBullet.transform.basis = muzzlePoint.global_basis
+	newBullet.bulletItem = itemRef.weaponAttachments.magazine.ammoInMag[0]
+	
+	itemRef.weaponAttachments.magazine.ammoInMag.remove_at(0)
+	currentAmmo = itemRef.weaponAttachments.magazine.ammoInMag.size()
+	
 	get_tree().root.add_child(newBullet)
 	hasAttacked = true
 
 func swapFireMode():
-	if currentFireType == GlobalEnums.fireType.semiAuto:		
+	if currentFireType == GlobalEnums.fireType.semiAuto:
 		if weaponInfo.firingType.has(GlobalEnums.fireType.burst):
 			currentFireType = GlobalEnums.fireType.burst
 		elif weaponInfo.firingType.has(GlobalEnums.fireType.fullAuto):
