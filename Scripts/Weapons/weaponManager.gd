@@ -81,7 +81,6 @@ func rangedAttack(auto : bool):
 	
 	get_tree().root.add_child(newBullet)
 	hasAttacked = true
-	isAttacking = false
 
 func swapFireMode():
 	if currentFireType == GlobalEnums.fireType.semiAuto:
