@@ -8,6 +8,9 @@ signal thirstChange(value, negative)
 signal hungerChange(value, negative)
 signal sleepChange(value, negative)
 
+#ui signals
+signal hitMarker()
+
 func emitAddItem(item: ItemObject, amount: int):
 	emit_signal("addItem", item, amount)
 
@@ -22,3 +25,6 @@ func emitHungerChange(value : float, negative : bool):
 
 func emitSleepChange(value : float, negative : bool):
 	emit_signal("sleepChange", value, negative)
+
+func emitHitMarker():
+	emit_signal("hitMarker")

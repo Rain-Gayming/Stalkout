@@ -9,4 +9,7 @@ func _ready():
 	linear_velocity = (-basis.z * bulletItem.bulletInfo.velocity) * 10
 	bulletHitBox.bullet = bulletItem.bulletInfo
 	bulletHitBox.bulletParent = self
+	
+	if GameSettings.showHitMarkers:
+		SignalManager.emitHitMarker()
 

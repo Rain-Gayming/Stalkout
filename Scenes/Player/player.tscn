@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://svq4j021r5qu"]
+[gd_scene load_steps=12 format=3 uid="uid://svq4j021r5qu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xtxbh"]
 [ext_resource type="Script" path="res://Scripts/Player/Camera/camera.gd" id="2_ftnmb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Inventory/inventoryManager.gd" id="5_r0tjs"]
 [ext_resource type="Script" path="res://Scripts/Stats/statManager.gd" id="6_8rx4u"]
 [ext_resource type="PackedScene" uid="uid://dnqemimj5vyvi" path="res://Scenes/Inventory/inventoryUI.tscn" id="7_bef0u"]
+[ext_resource type="PackedScene" uid="uid://ggfib4446cv2" path="res://Scenes/playerUI.tscn" id="9_uft1a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yysl2"]
 
@@ -72,3 +73,5 @@ hungerDepletion = 0.5
 currentSleep = 100.0
 maxSleep = 100.0
 sleepDepletion = 0.75
+
+[node name="PlayerUI" parent="." instance=ExtResource("9_uft1a")]
