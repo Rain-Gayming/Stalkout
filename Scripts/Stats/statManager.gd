@@ -79,3 +79,10 @@ func ChangeStamina(value : float, negative : bool):
 		currentStamina += value
 	currentStamina = clamp(currentStamina, 0, maxStamina)
 	
+func ChangeHealth(value : float, negative : bool):
+	if negative:
+		currentHealth -= value
+	else:
+		currentHealth += value
+	currentHealth = clamp(currentHealth, 0, maxHealth)
+	

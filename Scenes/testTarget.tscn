@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxul2dxy56uwk"]
+
+[ext_resource type="Script" path="res://Scripts/Stats/statManager.gd" id="1_ek6bt"]
+[ext_resource type="Script" path="res://Scripts/Player/hurtBox.gd" id="1_x5tfd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uhj0k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bpau7"]
+size = Vector3(1.09863, 2.06738, 1)
+
+[node name="TestTarget" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_uhj0k")
+skeleton = NodePath("../Area3D/CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bpau7")
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("statManager")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_x5tfd")
+statManager = NodePath("../StatManager")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_bpau7")
+
+[node name="StatManager" type="Node3D" parent="."]
+script = ExtResource("1_ek6bt")
+maxHealth = 9999.0
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

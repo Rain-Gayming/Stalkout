@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Survival Game"
+config/tags=PackedStringArray("projects")
 run/main_scene="res://Scenes/World/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
@@ -146,3 +147,4 @@ fireMode={
 
 3d_physics/layer_1="world"
 3d_physics/layer_2="entities"
+3d_physics/layer_3="bullets"
