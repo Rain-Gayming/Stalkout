@@ -9,11 +9,13 @@ class_name WeaponManager
 @export var attackTime : float
 @export var hasAttacked : bool
 @export var isAttacking : bool
+@export var isAltAttack : bool
 
 @export_category("Ranged")
 @export var muzzlePoint : Node3D
 @export var currentFireType : GlobalEnums.fireType
 @export var currentAmmo : int
+@export var isReloading : bool
 
 func _ready():
 	weaponInfo = itemRef.item.weaponInfo
@@ -59,6 +61,9 @@ func _process(delta):
 		#allows reloading
 		if Input.is_action_just_pressed("reload"):
 			reload()
+		
+		if Input.is_action_just_pressed("altAttack"):
+			isAltAttack = !isAltAttack
 
 func rangedAttack(auto : bool):
 	isAttacking = true
@@ -102,8 +107,10 @@ func swapFireMode():
 			currentFireType = GlobalEnums.fireType.burst
 
 func reload():
+	isReloading = true
 	await get_tree().create_timer(weaponInfo.reloadTime).timeout
 	currentAmmo = weaponInfo.maxAmmo
+	isReloading = false
 
 func meleeAttack():
 	pass
@@ -115,4 +122,10 @@ func updateAnimationValues():
 	else:
 		animTree["parameters/conditions/isAttacking"] = false
 		animTree["parameters/conditions/isIdle"] = true
-		
+	
+	if isAltAttack:
+		animTree["parameters/conditions/isAltAttack"] = true
+		animTree["parameters/conditions/isIdle"] = false
+	else:
+		animTree["parameters/conditions/isAltAttack"] = false
+		animTree["parameters/conditions/isIdle"] = true

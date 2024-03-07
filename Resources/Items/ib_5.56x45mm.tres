@@ -6,7 +6,8 @@
 [sub_resource type="Resource" id="Resource_p2ply"]
 script = ExtResource("1_xfwnp")
 bulletType = 0
-velocity = 30.0
+velocity = 150.0
+damage = 0.0
 penetration = 0
 
 [resource]
