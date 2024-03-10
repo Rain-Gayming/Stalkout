@@ -121,6 +121,7 @@ func swapFireMode():
 			currentFireType = GlobalEnums.fireType.burst
 
 func reload():
+	
 	isReloading = true
 	await get_tree().create_timer(weaponInfo.reloadTime).timeout
 	currentAmmo = weaponInfo.maxAmmo

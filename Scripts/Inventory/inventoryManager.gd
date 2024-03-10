@@ -1,8 +1,6 @@
 extends Node
 class_name InventoryManager
 
-@export var inv : InventoryManager
-
 @export_category("References")
 @export var inventoryVisibility : Control
 @export var inventoryUserInterface : Control
@@ -13,13 +11,20 @@ class_name InventoryManager
 @export var maxItems : int = 30
 
 func _ready():
-	inv = self
 	SignalManager.connect("addItem", addItem)
 	SignalManager.connect("removeItem", removeItem)
+	SignalManager.connect("findItem", findItem)
 
 func _process(delta):
 	if Input.is_action_just_pressed("shortcut1"):
 		inventoryItems[0].useItem()
+
+func findItem(item : ItemObject):
+	if itemObjects.has(item):
+		var itemLocation = itemObjects.find(item)
+		return inventoryItems[itemLocation]
+	else: 
+		print("item not in inventory")
 
 func addItem(item : ItemObject, amount : int):
 	if inventoryItems.size() < maxItems:
