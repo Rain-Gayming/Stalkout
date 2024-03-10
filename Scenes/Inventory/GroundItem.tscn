@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdupb6dpjhg1f"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/groundItem.gd" id="1_cxmh6"]
-[ext_resource type="Resource" uid="uid://dvulqbrvi51s6" path="res://Resources/Items/i_apple.tres" id="2_lj5k0"]
+[ext_resource type="Resource" uid="uid://dvulqbrvi51s6" path="res://Resources/Items/Consumables/Food/Fruit/iff_apple.tres" id="2_lj5k0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_irk1f"]
 

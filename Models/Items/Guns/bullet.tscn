@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://defsibji3g0kp"]
 
 [ext_resource type="Script" path="res://Scripts/Weapons/bulletObject.gd" id="1_cp4q2"]
-[ext_resource type="Resource" uid="uid://dfucatf6f75wl" path="res://Resources/Items/ib_5.56x45mm.tres" id="2_bfmkl"]
+[ext_resource type="Resource" uid="uid://dfucatf6f75wl" path="res://Resources/Items/Bullets/ib_5.56x45mm.tres" id="2_bfmkl"]
 [ext_resource type="Script" path="res://Scripts/Player/hitBox.gd" id="3_jd1qi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4o7hq"]

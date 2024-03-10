@@ -3,6 +3,7 @@ class_name WeaponManager
 
 @export var itemRef : inventoryItem
 @export var weaponInfo : WeaponInfo 
+@export var itemDB : ItemDatabase
 @export var animTree : AnimationTree
 @export var leftHandIK : SkeletonIK3D
 @export var rightHandIK : SkeletonIK3D
@@ -121,6 +122,15 @@ func swapFireMode():
 			currentFireType = GlobalEnums.fireType.burst
 
 func reload():
+	for item in itemDB.items:
+		if item.magInfo:
+			if item.magInfo.bulletCaliber == weaponInfo.bulletCaliber:
+				print(item)
+			else:
+				print("wrong caliber")
+		else:
+			print("not a mag")
+	
 	
 	isReloading = true
 	await get_tree().create_timer(weaponInfo.reloadTime).timeout

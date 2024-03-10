@@ -14,3 +14,4 @@ class_name ItemObject
 @export_category("Weapon Info")
 @export var weaponInfo : WeaponInfo
 @export var bulletInfo : BulletInfo
+@export var magInfo : MagazineInfo

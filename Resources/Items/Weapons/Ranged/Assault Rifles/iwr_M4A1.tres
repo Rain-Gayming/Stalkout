@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ItemObject" load_steps=5 format=3 uid="uid://braxh80b4bkid"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/itemObject.gd" id="1_p1bci"]
+[ext_resource type="PackedScene" uid="uid://defsibji3g0kp" path="res://Models/Items/Guns/bullet.tscn" id="2_y5uj2"]
+[ext_resource type="Script" path="res://Scripts/Weapons/weaponInfo.gd" id="3_w22wo"]
+
+[sub_resource type="Resource" id="Resource_h3oh0"]
+script = ExtResource("3_w22wo")
+isRanged = true
+attackSpeed = 0.1
+weaponType = 4
+damage = 0.0
+firingType = Array[int]([1, 0])
+bulletObject = ExtResource("2_y5uj2")
+reloadTime = 0.0
+maxAmmo = 30
+burstShootAmount = 0
+
+[resource]
+script = ExtResource("1_p1bci")
+itemName = "M4A1"
+canStack = false
+itemRarity = 2
+weight = 15.0
+consumableEffects = Array[Resource("res://Scripts/Inventory/Consumables/consumableEffect.gd")]([])
+weaponInfo = SubResource("Resource_h3oh0")

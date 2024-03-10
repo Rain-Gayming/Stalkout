@@ -5,6 +5,7 @@ class_name WeaponInfo
 @export var isRanged : bool
 @export var attackSpeed : float
 @export var weaponType : GlobalEnums.weaponType
+@export var bulletCaliber : GlobalEnums.bulletCaliber
 
 @export_category("Melee")
 @export var damage : float

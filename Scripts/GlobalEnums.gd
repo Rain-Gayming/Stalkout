@@ -50,6 +50,11 @@ enum bulletType
 {
 	fmj,
 }
+enum bulletCaliber
+{
+	_556x45mm,
+	
+}
 
 enum weather
 {

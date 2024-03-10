@@ -17,7 +17,7 @@ class_name InventoryUI
 
 @export_category("Debug")
 @export var itemInput : TextEdit
-@export var database : itemDatabase
+@export var database : ItemDatabase
 
 func _ready():
 	for i in 30:
