@@ -1,6 +1,8 @@
 extends Node
 class_name InventoryManager
 
+@export var inv : InventoryManager
+
 @export_category("References")
 @export var inventoryVisibility : Control
 @export var inventoryUserInterface : Control
@@ -11,6 +13,7 @@ class_name InventoryManager
 @export var maxItems : int = 30
 
 func _ready():
+	inv = self
 	SignalManager.connect("addItem", addItem)
 	SignalManager.connect("removeItem", removeItem)
 

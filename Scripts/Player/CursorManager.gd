@@ -8,8 +8,12 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
-		pass
+		togglePause()
 
 func togglePause():
 	isPaused = !isPaused
+	if isPaused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	print(CursorManager.isPaused)
