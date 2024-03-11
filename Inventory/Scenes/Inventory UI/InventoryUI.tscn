@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn8jkyalalwij"]
+[gd_scene load_steps=6 format=3 uid="uid://cn8jkyalalwij"]
 
 [ext_resource type="Script" path="res://Inventory/Scripts/inventoryManager.gd" id="1_rvbok"]
 [ext_resource type="Resource" uid="uid://c7qxajrc456cp" path="res://Inventory/Items/Materials/Components/Mat_Wood.tres" id="2_k6el1"]
 [ext_resource type="Script" path="res://Inventory/Scripts/Inventory Items/inventoryItem.gd" id="3_sboul"]
+[ext_resource type="Script" path="res://Inventory/Scripts/Inventory UI/itemSlot.gd" id="4_xr4gj"]
 
 [sub_resource type="Resource" id="Resource_sopwr"]
 script = ExtResource("3_sboul")
 itemObject = ExtResource("2_k6el1")
 itemAmount = 1
 
-[node name="InventoryUI" type="Control"]
+[node name="InventoryUI" type="Control" node_paths=PackedStringArray("itemSlots")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,3 +20,35 @@ grow_vertical = 2
 script = ExtResource("1_rvbok")
 debugAdd = SubResource("Resource_sopwr")
 maxItems = 30
+itemSlots = [NodePath("ItemSlot")]
+
+[node name="ItemSlot" type="Control" parent="." node_paths=PackedStringArray("itemIcon", "amountText")]
+anchors_preset = 0
+offset_left = 604.0
+offset_top = 309.0
+offset_right = 644.0
+offset_bottom = 349.0
+script = ExtResource("4_xr4gj")
+itemIcon = NodePath("ItemIcon")
+amountText = NodePath("ItemAmountText")
+
+[node name="ItemIcon" type="TextureRect" parent="ItemSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemAmountText" type="RichTextLabel" parent="ItemSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right] 0 [/right] "
+fit_content = true
+scroll_active = false

@@ -6,7 +6,7 @@ class_name ItemObject
 @export var canStack : bool
 
 @export_category("UI")
-@export var sprite : Texture2D
+@export var itemSprite : Texture2D
 @export var gridSize : Vector2
 
 @export_category("Extra Info")

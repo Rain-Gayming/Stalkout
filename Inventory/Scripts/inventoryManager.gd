@@ -9,6 +9,7 @@ extends Node
 @export var itemObjects : Array[ItemObject]
 
 @export_category("UI")
+@export var itemSlots : Array[ItemSlot]
 
 func _process(delta):
 	if Input.is_action_just_pressed("debug_console"):
@@ -19,6 +20,7 @@ func addItem(itemToAdd : InventoryItem):
 		if itemObjects.has(itemToAdd.itemObject):
 			var itemLocation = itemObjects.find(itemToAdd.itemObject)
 			inventoryItems[itemLocation].itemAmount += itemToAdd.itemAmount
+			itemSlots[itemLocation].updateUI()
 		else:
 			addNewItem(itemToAdd)
 	else:
@@ -28,6 +30,9 @@ func addNewItem(itemToAdd : InventoryItem):
 	if itemObjects.size() < maxItems:
 		inventoryItems.append(itemToAdd)
 		itemObjects.append(itemToAdd.itemObject)
+		
+		var itemLocation = itemObjects.find(itemToAdd.itemObject)
+		itemSlots[itemLocation].setItem(itemToAdd)
 
 func removeItem(itemToRemove : InventoryItem):
 	var itemLocation = itemObjects.find(itemToRemove.itemObject)
@@ -36,3 +41,14 @@ func removeItem(itemToRemove : InventoryItem):
 	if inventoryItems[itemLocation].itemAmount <= 0:
 		inventoryItems.remove_at(itemLocation)
 		itemObjects.remove_at(itemLocation)
+	
+	itemSlots[itemLocation].updateUI()
+
+func moveItem():
+	pass
+
+func combineItems():
+	pass
+
+func useItem():
+	pass

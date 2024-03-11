@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="ItemObject" load_steps=2 format=3 uid="uid://c7qxajrc456cp"]
+[gd_resource type="Resource" script_class="ItemObject" load_steps=3 format=3 uid="uid://c7qxajrc456cp"]
 
+[ext_resource type="Texture2D" uid="uid://bvslyhj6o4l4l" path="res://Inventory/Items/Bullets/5.56x45mm/5.56x45mm NATO FMJ.png" id="1_2n32g"]
 [ext_resource type="Script" path="res://Inventory/Scripts/Item Info/itemObject.gd" id="1_oq47i"]
 
 [resource]
 script = ExtResource("1_oq47i")
 itemName = "Wood"
 canStack = true
+itemSprite = ExtResource("1_2n32g")
 gridSize = Vector2(1, 1)
 weight = 0.25
 value = 15.0
