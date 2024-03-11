@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MagazineItem" load_steps=3 format=3 uid="uid://btfyl3onibtf0"]
+
+[ext_resource type="Script" path="res://Inventory/Scripts/Item Info/Attachments/magazineItem.gd" id="1_kra48"]
+[ext_resource type="Texture2D" uid="uid://bxbh3pqdux8at" path="res://Inventory/Items/Attachments/Magazines/5.56x45mm/5.56x45mm STANAG 30-Round.png" id="2_asn47"]
+
+[resource]
+script = ExtResource("1_kra48")
+bulletCaliber = 0
+attachmentType = 3
+itemName = "5.56x45mm STANAG 30-Round"
+canStack = false
+sprite = ExtResource("2_asn47")
+gridSize = Vector2(1, 2)
+weight = 0.3
+value = 125.0

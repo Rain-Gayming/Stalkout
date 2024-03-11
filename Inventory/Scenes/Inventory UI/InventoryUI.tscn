@@ -1,4 +1,13 @@
-[gd_scene format=3 uid="uid://cn8jkyalalwij"]
+[gd_scene load_steps=5 format=3 uid="uid://cn8jkyalalwij"]
+
+[ext_resource type="Script" path="res://Inventory/Scripts/inventoryManager.gd" id="1_rvbok"]
+[ext_resource type="Resource" uid="uid://c7qxajrc456cp" path="res://Inventory/Items/Materials/Components/Mat_Wood.tres" id="2_k6el1"]
+[ext_resource type="Script" path="res://Inventory/Scripts/Inventory Items/inventoryItem.gd" id="3_sboul"]
+
+[sub_resource type="Resource" id="Resource_sopwr"]
+script = ExtResource("3_sboul")
+itemObject = ExtResource("2_k6el1")
+itemAmount = 1
 
 [node name="InventoryUI" type="Control"]
 layout_mode = 3
@@ -7,3 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rvbok")
+debugAdd = SubResource("Resource_sopwr")
+maxItems = 30
