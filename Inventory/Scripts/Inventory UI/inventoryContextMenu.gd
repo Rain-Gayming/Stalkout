@@ -1,20 +1,22 @@
 extends Control
 
 @export var mouseOnButton : bool
+@export var selectedSlot : ItemSlot
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_leftClick"):
 		if !mouseOnButton:
-			InventorySignalManager.emitToggleContextMenu(Vector2(0, 0))
+			hide()
 
 
 func useItemButton():
-	print("using item")
-	InventorySignalManager.emitToggleContextMenu(Vector2(0, 0))
+	InventorySignalManager.emitUseItem(selectedSlot.itemInSlot.itemObject, 1)
+	InventorySignalManager.emitToggleContextMenu(Vector2(0, 0), null)
 
 
 func dropItemButton():
-	InventorySignalManager.emitToggleContextMenu(Vector2(0, 0))
+	InventorySignalManager.emitDropItem(selectedSlot.itemInSlot)
+	InventorySignalManager.emitToggleContextMenu(Vector2(0, 0), null)
 
 
 

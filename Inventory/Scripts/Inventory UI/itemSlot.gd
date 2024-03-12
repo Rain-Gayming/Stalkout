@@ -14,17 +14,22 @@ func setItem(item : InventoryItem):
 
 func updateUI():
 	
-	if itemInSlot.itemObject:
-		itemIcon.texture = itemInSlot.itemObject.itemSprite
-		
-		if itemInSlot.itemAmount > 1:
-			amountText.show()
-			amountText.text = str(itemInSlot.itemAmount)
+	if itemInSlot != null:
+		if itemInSlot.itemObject:
+			
+			itemIcon.texture = itemInSlot.itemObject.itemSprite
+			
+			if itemInSlot.itemAmount > 1:
+				amountText.show()
+				amountText.text = str(itemInSlot.itemAmount)
+			else:
+				amountText.hide()
 		else:
+			itemIcon.hide()
 			amountText.hide()
 	else:
 		itemIcon.hide()
 		amountText.hide()
 
 func contextMenuToggle():
-	InventorySignalManager.emitToggleContextMenu(position)
+	InventorySignalManager.emitToggleContextMenu(position, self)

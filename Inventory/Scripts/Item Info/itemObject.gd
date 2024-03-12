@@ -12,3 +12,6 @@ class_name ItemObject
 @export_category("Extra Info")
 @export var weight : float
 @export var value : float
+
+func useItem():
+	print("Using item " + itemName)

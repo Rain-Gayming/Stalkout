@@ -1,6 +1,14 @@
 extends Node
 
-signal toggleContextMenu(position)
+signal toggleContextMenu(position, itemSlot)
+signal useItem(itemObject, amountToUse)
+signal dropItem(inventoryItem)
 
-func emitToggleContextMenu(position : Vector2):
-	emit_signal("toggleContextMenu", position)
+func emitUseItem(itemObject : ItemObject, amountToUse : int):
+	emit_signal("useItem", itemObject, amountToUse)
+
+func emitToggleContextMenu(position : Vector2, itemSlot : ItemSlot):
+	emit_signal("toggleContextMenu", position, itemSlot)
+
+func emitDropItem(item : InventoryItem):
+	emit_signal("dropItem", item)
