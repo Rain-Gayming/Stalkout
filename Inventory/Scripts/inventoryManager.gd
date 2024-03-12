@@ -1,7 +1,6 @@
 extends Node
 
 #TODO:
-#Item using
 #Item combining
 #Item equipping
 #Item condition
@@ -17,12 +16,19 @@ extends Node
 @export var itemObjects : Array[ItemObject]
 
 @export_category("UI")
+@export var itemSlotScene : PackedScene
+@export var itemSlotGrid : GridContainer
 @export var itemSlots : Array[ItemSlot]
 
 @export_group("Context Menu")
 @export var contextMenu : Control
 
 func _ready():
+	for slot in maxItems:
+		var newSlot = itemSlotScene.instantiate()
+		itemSlotGrid.add_child(newSlot)
+		itemSlots.append(newSlot)
+	
 	InventorySignalManager.connect("toggleContextMenu", toggleContextMenu)
 	InventorySignalManager.connect("useItem", useItem)
 	InventorySignalManager.connect("dropItem", removeItem)
@@ -47,15 +53,22 @@ func addItem(itemToAdd : InventoryItem):
 			addNewItem(itemToAdd)
 	else:
 		addNewItem(itemToAdd)
-	itemSlots[itemLocation].updateUI()
 
 func addNewItem(itemToAdd : InventoryItem):
 	if itemObjects.size() < maxItems:
-		inventoryItems.append(itemToAdd)
-		itemObjects.append(itemToAdd.itemObject)
+		inventoryItems.push_back(itemToAdd)
+		itemObjects.push_back(itemToAdd.itemObject)
 		
-		var itemLocation = itemObjects.find(itemToAdd.itemObject)
-		itemSlots[itemLocation].setItem(itemToAdd)
+		var newSlot = findNextEmptySlot()
+		newSlot.setItem(itemToAdd)
+		print(newSlot)
+
+func findNextEmptySlot():
+	for slot in itemSlots:
+		if !slot.itemInSlot or !slot.itemInSlot.itemObject:
+			return slot 
+
+
 
 func removeItem(itemToRemove : InventoryItem):
 	if itemToRemove != null and itemToRemove.itemObject != null:
@@ -93,5 +106,5 @@ func toggleContextMenu(newPosition : Vector2, itemSlot : ItemSlot):
 		contextMenu.hide()
 	else:
 		contextMenu.show()
-		contextMenu.position = newPosition
+		contextMenu.position = newPosition + itemSlotGrid.position
 		contextMenu.selectedSlot = itemSlot

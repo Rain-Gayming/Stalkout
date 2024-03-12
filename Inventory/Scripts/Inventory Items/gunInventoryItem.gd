@@ -1,4 +1,4 @@
-extends InventoryItem
+extends ConditionInventoryItem
 class_name GunInventoryItem
 
 

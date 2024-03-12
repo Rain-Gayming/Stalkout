@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://cn8jkyalalwij"]
 
 [ext_resource type="Script" path="res://Inventory/Scripts/inventoryManager.gd" id="1_rvbok"]
-[ext_resource type="Resource" uid="uid://c7qxajrc456cp" path="res://Inventory/Items/Materials/Components/Mat_Wood.tres" id="2_k6el1"]
+[ext_resource type="Resource" uid="uid://btfyl3onibtf0" path="res://Inventory/Items/Attachments/Magazines/5.56x45mm/IMag_5.56x45mm STANAG 30-Round.tres" id="2_y4wsm"]
 [ext_resource type="Script" path="res://Inventory/Scripts/Inventory Items/inventoryItem.gd" id="3_sboul"]
 [ext_resource type="Script" path="res://Inventory/Scripts/Inventory UI/inventoryContextMenu.gd" id="4_ojq8f"]
-[ext_resource type="Script" path="res://Inventory/Scripts/Inventory UI/itemSlot.gd" id="4_xr4gj"]
+[ext_resource type="PackedScene" uid="uid://dfogoplgny5tr" path="res://Inventory/Scenes/Inventory UI/ItemSlot.tscn" id="5_04thg"]
 
 [sub_resource type="Resource" id="Resource_sopwr"]
 script = ExtResource("3_sboul")
-itemObject = ExtResource("2_k6el1")
+itemObject = ExtResource("2_y4wsm")
 itemAmount = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6un1k"]
@@ -17,7 +17,7 @@ content_margin_top = 15.0
 content_margin_right = 15.0
 content_margin_bottom = 15.0
 
-[node name="InventoryUI" type="Control" node_paths=PackedStringArray("itemSlots", "contextMenu")]
+[node name="InventoryUI" type="Control" node_paths=PackedStringArray("itemSlotGrid", "contextMenu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,8 +26,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rvbok")
 debugAdd = SubResource("Resource_sopwr")
-maxItems = 30
-itemSlots = [NodePath("ItemSlot")]
+maxItems = 36
+itemSlotScene = ExtResource("5_04thg")
+itemSlotGrid = NodePath("GridContainer")
 contextMenu = NodePath("ContextMenu")
 
 [node name="ContextMenu" type="PanelContainer" parent="."]
@@ -55,60 +56,25 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Drop Item"
 
-[node name="ItemSlot" type="Control" parent="." node_paths=PackedStringArray("itemIcon", "amountText")]
-anchors_preset = 0
-offset_left = 604.0
-offset_top = 309.0
-offset_right = 644.0
-offset_bottom = 349.0
-script = ExtResource("4_xr4gj")
-itemIcon = NodePath("ItemIcon")
-amountText = NodePath("ItemAmountText")
-
-[node name="ColorRect" type="ColorRect" parent="ItemSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.576471, 0.576471, 0.576471, 1)
-
-[node name="ItemIcon" type="TextureRect" parent="ItemSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ItemAmountText" type="RichTextLabel" parent="ItemSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "[right] 0 [/right] "
-fit_content = true
-scroll_active = false
-
-[node name="Button" type="Button" parent="ItemSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-button_mask = 2
-flat = true
-
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -16.0
+offset_right = 189.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 9
 
 [connection signal="mouse_entered" from="ContextMenu/VBoxContainer/useButton" to="ContextMenu" method="mouseEnteredButton"]
 [connection signal="mouse_exited" from="ContextMenu/VBoxContainer/useButton" to="ContextMenu" method="mouseExitedButton"]
@@ -116,6 +82,3 @@ offset_bottom = 40.0
 [connection signal="mouse_entered" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="mouseEnteredButton"]
 [connection signal="mouse_exited" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="mouseExitedButton"]
 [connection signal="pressed" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="dropItemButton"]
-[connection signal="mouse_entered" from="ItemSlot" to="ItemSlot" method="mouseEntered"]
-[connection signal="mouse_exited" from="ItemSlot" to="ItemSlot" method="mouseExited"]
-[connection signal="pressed" from="ItemSlot/Button" to="ItemSlot" method="contextMenuToggle"]

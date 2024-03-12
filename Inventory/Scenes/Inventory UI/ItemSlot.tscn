@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfogoplgny5tr"]
+
+[ext_resource type="Script" path="res://Inventory/Scripts/Inventory UI/itemSlot.gd" id="1_3ighl"]
+
+[node name="ItemSlot" type="Control" node_paths=PackedStringArray("itemIcon", "amountText")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3ighl")
+itemIcon = NodePath("ItemIcon")
+amountText = NodePath("ItemAmountText")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.576471, 0.576471, 0.576471, 1)
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemAmountText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right] 0 [/right] "
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+button_mask = 2
+flat = true
+
+[connection signal="mouse_entered" from="." to="." method="mouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="mouseExited"]
+[connection signal="pressed" from="Button" to="." method="contextMenuToggle"]
