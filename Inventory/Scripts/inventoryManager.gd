@@ -66,9 +66,10 @@ func combineItems():
 
 func useItem(itemToUse : InventoryItem):
 	removeItem(itemToUse)
-	
-func toggleContextMenu(position : Vector2):
+
+func toggleContextMenu(newPosition : Vector2):
 	if contextMenu.visible:
 		contextMenu.hide()
 	else:
 		contextMenu.show()
+		contextMenu.position = newPosition

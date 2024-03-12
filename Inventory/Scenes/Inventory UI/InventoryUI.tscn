@@ -32,6 +32,7 @@ contextMenu = NodePath("ContextMenu")
 
 [node name="ContextMenu" type="PanelContainer" parent="."]
 visible = false
+z_index = 10
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -109,7 +110,11 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[connection signal="mouse_entered" from="ContextMenu/VBoxContainer/useButton" to="ContextMenu" method="mouseEnteredButton"]
+[connection signal="mouse_exited" from="ContextMenu/VBoxContainer/useButton" to="ContextMenu" method="mouseExitedButton"]
 [connection signal="pressed" from="ContextMenu/VBoxContainer/useButton" to="ContextMenu" method="useItemButton"]
+[connection signal="mouse_entered" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="mouseEnteredButton"]
+[connection signal="mouse_exited" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="mouseExitedButton"]
 [connection signal="pressed" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="dropItemButton"]
 [connection signal="mouse_entered" from="ItemSlot" to="ItemSlot" method="mouseEntered"]
 [connection signal="mouse_exited" from="ItemSlot" to="ItemSlot" method="mouseExited"]
