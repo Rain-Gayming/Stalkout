@@ -1,4 +1,4 @@
-extends Node
+extends Control
 class_name ItemSlot
 
 @export_category("Items")
@@ -25,3 +25,6 @@ func updateUI():
 	else:
 		itemIcon.hide()
 		amountText.hide()
+
+func contextMenuToggle():
+	InventorySignalManager.emitToggleContextMenu(position)

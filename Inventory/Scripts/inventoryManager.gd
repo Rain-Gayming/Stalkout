@@ -1,5 +1,13 @@
 extends Node
 
+#TODO:
+#Item using
+#Item combining
+#Item equipping
+#Item condition
+#Item context menu
+
+
 @export var debugAdd : InventoryItem
 
 @export_category("Inventory Manager")
@@ -10,6 +18,12 @@ extends Node
 
 @export_category("UI")
 @export var itemSlots : Array[ItemSlot]
+
+@export_group("Context Menu")
+@export var contextMenu : Control
+
+func _ready():
+	InventorySignalManager.connect("toggleContextMenu", toggleContextMenu)
 
 func _process(delta):
 	if Input.is_action_just_pressed("debug_console"):
@@ -50,5 +64,11 @@ func moveItem():
 func combineItems():
 	pass
 
-func useItem():
-	pass
+func useItem(itemToUse : InventoryItem):
+	removeItem(itemToUse)
+	
+func toggleContextMenu(position : Vector2):
+	if contextMenu.visible:
+		contextMenu.hide()
+	else:
+		contextMenu.show()
