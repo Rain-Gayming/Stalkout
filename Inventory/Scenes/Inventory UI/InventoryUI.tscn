@@ -1,15 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cn8jkyalalwij"]
+[gd_scene load_steps=6 format=3 uid="uid://cn8jkyalalwij"]
 
 [ext_resource type="Script" path="res://Inventory/Scripts/inventoryManager.gd" id="1_rvbok"]
-[ext_resource type="Resource" uid="uid://btfyl3onibtf0" path="res://Inventory/Items/Attachments/Magazines/5.56x45mm/IMag_5.56x45mm STANAG 30-Round.tres" id="2_y4wsm"]
-[ext_resource type="Script" path="res://Inventory/Scripts/Inventory Items/inventoryItem.gd" id="3_sboul"]
+[ext_resource type="Resource" uid="uid://b3ed1888jnq7q" path="res://Inventory/itemDatabase.tres" id="2_5v34i"]
 [ext_resource type="Script" path="res://Inventory/Scripts/Inventory UI/inventoryContextMenu.gd" id="4_ojq8f"]
 [ext_resource type="PackedScene" uid="uid://dfogoplgny5tr" path="res://Inventory/Scenes/Inventory UI/ItemSlot.tscn" id="5_04thg"]
-
-[sub_resource type="Resource" id="Resource_sopwr"]
-script = ExtResource("3_sboul")
-itemObject = ExtResource("2_y4wsm")
-itemAmount = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6un1k"]
 content_margin_left = 15.0
@@ -17,7 +11,7 @@ content_margin_top = 15.0
 content_margin_right = 15.0
 content_margin_bottom = 15.0
 
-[node name="InventoryUI" type="Control" node_paths=PackedStringArray("itemSlotGrid", "contextMenu")]
+[node name="InventoryUI" type="Control" node_paths=PackedStringArray("itemSlotGrid", "contextMenu", "debugItemName")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,11 +19,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rvbok")
-debugAdd = SubResource("Resource_sopwr")
+itemDatabase = ExtResource("2_5v34i")
 maxItems = 36
 itemSlotScene = ExtResource("5_04thg")
 itemSlotGrid = NodePath("GridContainer")
 contextMenu = NodePath("ContextMenu")
+debugItemName = NodePath("TextEdit")
 
 [node name="ContextMenu" type="PanelContainer" parent="."]
 visible = false
@@ -42,19 +37,32 @@ script = ExtResource("4_ojq8f")
 
 [node name="ColorRect" type="ColorRect" parent="ContextMenu"]
 layout_mode = 2
+color = Color(0.577008, 0.577008, 0.577008, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ContextMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="ContextMenu"]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="useButton" type="Button" parent="ContextMenu/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContextMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="useButton" type="Button" parent="ContextMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Use Item"
 
-[node name="dropButton" type="Button" parent="ContextMenu/VBoxContainer"]
+[node name="dropButton" type="Button" parent="ContextMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Drop Item"
+
+[node name="TextEdit" type="TextEdit" parent="ContextMenu"]
+layout_mode = 2
+placeholder_text = "Enter item name..."
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
@@ -76,9 +84,26 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 9
 
-[connection signal="mouse_entered" from="ContextMenu/VBoxContainer/useButton" to="ContextMenu" method="mouseEnteredButton"]
-[connection signal="mouse_exited" from="ContextMenu/VBoxContainer/useButton" to="ContextMenu" method="mouseExitedButton"]
-[connection signal="pressed" from="ContextMenu/VBoxContainer/useButton" to="ContextMenu" method="useItemButton"]
-[connection signal="mouse_entered" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="mouseEnteredButton"]
-[connection signal="mouse_exited" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="mouseExitedButton"]
-[connection signal="pressed" from="ContextMenu/VBoxContainer/dropButton" to="ContextMenu" method="dropItemButton"]
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 42.0
+offset_right = 121.0
+offset_bottom = 73.0
+text = "Add Item"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 179.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 15
+placeholder_text = "Enter item name..."
+
+[connection signal="mouse_entered" from="ContextMenu/MarginContainer/VBoxContainer/useButton" to="ContextMenu" method="mouseEnteredButton"]
+[connection signal="mouse_exited" from="ContextMenu/MarginContainer/VBoxContainer/useButton" to="ContextMenu" method="mouseExitedButton"]
+[connection signal="pressed" from="ContextMenu/MarginContainer/VBoxContainer/useButton" to="ContextMenu" method="useItemButton"]
+[connection signal="mouse_entered" from="ContextMenu/MarginContainer/VBoxContainer/dropButton" to="ContextMenu" method="mouseEnteredButton"]
+[connection signal="mouse_exited" from="ContextMenu/MarginContainer/VBoxContainer/dropButton" to="ContextMenu" method="mouseExitedButton"]
+[connection signal="pressed" from="ContextMenu/MarginContainer/VBoxContainer/dropButton" to="ContextMenu" method="dropItemButton"]
+[connection signal="pressed" from="Button" to="." method="addDebugItem"]

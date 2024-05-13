@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="GunItem" load_steps=2 format=3 uid="uid://bv8s8n0f26ona"]
+[gd_resource type="Resource" script_class="GunItem" load_steps=3 format=3 uid="uid://bv8s8n0f26ona"]
 
 [ext_resource type="Script" path="res://Inventory/Scripts/Item Info/gunItem.gd" id="1_ab2fr"]
+[ext_resource type="Texture2D" uid="uid://bvslyhj6o4l4l" path="res://Inventory/Items/Bullets/5.56x45mm/5.56x45mm NATO FMJ.png" id="1_vr56y"]
 
 [resource]
 script = ExtResource("1_ab2fr")
 fireRate = 0.1
 itemName = "M4A1"
 canStack = false
+itemSprite = ExtResource("1_vr56y")
 gridSize = Vector2(4, 2)
 weight = 2.92
 value = 1550.0

@@ -1,6 +1,7 @@
 extends Node
 
 signal toggleContextMenu(position, itemSlot)
+signal slotClicked(itemSlot)
 signal useItem(itemObject, amountToUse)
 signal dropItem(inventoryItem)
 
@@ -12,3 +13,6 @@ func emitToggleContextMenu(position : Vector2, itemSlot : ItemSlot):
 
 func emitDropItem(item : InventoryItem):
 	emit_signal("dropItem", item)
+
+func emitSlotClicked(itemSlot : ItemSlot):
+	emit_signal("slotClicked", itemSlot)

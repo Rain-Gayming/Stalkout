@@ -1,15 +1,9 @@
 extends Node
 
-#TODO:
-#Item combining
-#Item equipping
-#Item condition
-#Item context menu
 
-
-@export var debugAdd : InventoryItem
 
 @export_category("Inventory Manager")
+@export var itemDatabase : ItemDatabase
 @export_group("Items")
 @export var maxItems : int
 @export var inventoryItems : Array[InventoryItem]
@@ -23,6 +17,14 @@ extends Node
 @export_group("Context Menu")
 @export var contextMenu : Control
 
+@export_group("Swap Items")
+@export var swapFrom : ItemSlot
+@export var swapTo : ItemSlot
+@export var storedSwapItem : InventoryItem
+
+@export_group("Debug")
+@export var debugItemName : TextEdit
+
 func _ready():
 	for slot in maxItems:
 		var newSlot = itemSlotScene.instantiate()
@@ -32,18 +34,16 @@ func _ready():
 	InventorySignalManager.connect("toggleContextMenu", toggleContextMenu)
 	InventorySignalManager.connect("useItem", useItem)
 	InventorySignalManager.connect("dropItem", removeItem)
+	InventorySignalManager.connect("slotClicked", swapItems)
 
-func _process(delta):
-	if Input.is_action_just_pressed("debug_console"):
-		addItem(debugAdd)
 
 func addItem(itemToAdd : InventoryItem):
-	var itemLocation = itemObjects.find(itemToAdd.itemObject)
 	
 	if itemToAdd.itemAmount <= 0:
 			itemToAdd.itemAmount = 1
 			
 	if itemToAdd.itemObject.canStack:
+		var itemLocation = itemObjects.find(itemToAdd.itemObject)
 		if itemObjects.has(itemToAdd.itemObject):
 			inventoryItems[itemLocation].itemAmount += itemToAdd.itemAmount
 			
@@ -68,7 +68,19 @@ func findNextEmptySlot():
 		if !slot.itemInSlot or !slot.itemInSlot.itemObject:
 			return slot 
 
-
+func swapItems(itemSlotClicked : ItemSlot):
+	if swapFrom == null:
+		swapFrom = itemSlotClicked
+	else:
+		swapTo = itemSlotClicked
+		
+		storedSwapItem = swapFrom.itemInSlot
+		swapFrom.itemInSlot = swapTo.itemInSlot
+		swapTo.itemInSlot = storedSwapItem
+		
+		swapFrom = null
+		swapTo = null
+		storedSwapItem = null
 
 func removeItem(itemToRemove : InventoryItem):
 	if itemToRemove != null and itemToRemove.itemObject != null:
@@ -86,9 +98,6 @@ func removeItem(itemToRemove : InventoryItem):
 			itemSlots[itemLocation].setItem(null)
 			print("no item in slot")
 	
-
-func moveItem():
-	pass
 
 func combineItems():
 	pass
@@ -108,3 +117,26 @@ func toggleContextMenu(newPosition : Vector2, itemSlot : ItemSlot):
 		contextMenu.show()
 		contextMenu.position = newPosition + itemSlotGrid.position
 		contextMenu.selectedSlot = itemSlot
+
+
+func addDebugItem():
+	for dbItem in itemDatabase.items:
+		if dbItem.itemName == debugItemName.text:
+			var newDBItem = CreateNewInventoryItem(dbItem)
+			newDBItem.itemObject = dbItem
+			newDBItem.itemAmount = 1
+			addItem(newDBItem)
+
+func CreateNewInventoryItem(item : ItemObject):
+	if item.get_script() == ItemObject:
+		var newIItem = InventoryItem.new()
+		return newIItem
+	elif item.get_script() == GunItem:
+		var newIItem = GunInventoryItem.new()
+		return newIItem
+	elif item.get_script() == MagazineItem:
+		var newIItem = MagazineInventoryItem.new()
+		return newIItem
+	else: 
+		var newIItem = InventoryItem.new()
+		return newIItem

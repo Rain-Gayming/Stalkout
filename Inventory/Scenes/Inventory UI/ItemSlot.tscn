@@ -19,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.576471, 0.576471, 0.576471, 1)
 
 [node name="ItemIcon" type="TextureRect" parent="."]
@@ -28,30 +29,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ItemAmountText" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
 offset_top = 17.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 bbcode_enabled = true
-text = "[right] 0 [/right] "
+text = "[right] 1 [/right] "
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-button_mask = 2
-flat = true
-
 [connection signal="mouse_entered" from="." to="." method="mouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="mouseExited"]
-[connection signal="pressed" from="Button" to="." method="contextMenuToggle"]

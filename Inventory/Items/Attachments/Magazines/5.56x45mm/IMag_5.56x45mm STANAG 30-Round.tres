@@ -7,7 +7,7 @@
 script = ExtResource("1_kra48")
 bulletCaliber = 0
 attachmentType = 3
-itemName = "5.56x45mm STANAG 30-Round"
+itemName = "4mm"
 canStack = false
 itemSprite = ExtResource("2_asn47")
 gridSize = Vector2(1, 2)
