@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BulletItem" load_steps=3 format=3 uid="uid://boohjbgoggrvo"]
+
+[ext_resource type="Texture2D" uid="uid://bvslyhj6o4l4l" path="res://Inventory/Items/Bullets/5.56x45mm/5.56x45mm NATO FMJ.png" id="1_jofws"]
+[ext_resource type="Script" path="res://Inventory/Scripts/Item Info/bulletItem.gd" id="1_rafos"]
+
+[resource]
+script = ExtResource("1_rafos")
+bulletCaliber = 0
+itemName = "5mm"
+canStack = true
+itemSprite = ExtResource("1_jofws")
+gridSize = Vector2(1, 1)
+weight = 0.0
+value = 0.0

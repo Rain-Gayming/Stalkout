@@ -7,6 +7,7 @@ class_name ItemSlot
 @export_category("UI")
 @export var itemIcon : TextureRect
 @export var amountText : RichTextLabel
+@export var fillText : RichTextLabel
 @export var mouseHovered : bool
 
 func _ready():
@@ -37,9 +38,20 @@ func updateUI():
 				amountText.text = "[right] " + str(itemInSlot.itemAmount) + "[/right]"
 			else:
 				amountText.hide()
+			
+			if itemInSlot.get_script() == MagazineInventoryItem:
+				fillText.show()
+				fillText.text = "[right] " + str(itemInSlot.bulletsInMag.size()) + " / " + str(itemInSlot.itemObject.maxAmmo) + "[/right]"
+			else:
+				fillText.hide()
+			
+			if itemInSlot.itemAmount <= 0:
+				itemInSlot = null
+				updateUI()
 	else:
 		itemIcon.hide()
 		amountText.hide()
+		fillText.hide()
 
 func contextMenuToggle():
 	InventorySignalManager.emitToggleContextMenu(position, self)

@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_kra48")
+maxAmmo = 30
 bulletCaliber = 0
 attachmentType = 3
 itemName = "4mm"

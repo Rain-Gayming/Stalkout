@@ -20,6 +20,11 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 WeaponEnums="*res://Enums/weaponEnums.gd"
 InventorySignalManager="*res://Signals/inventorySignalManager.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 debug_console={

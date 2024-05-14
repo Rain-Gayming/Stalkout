@@ -1,6 +1,4 @@
-extends Node
-
-
+extends Control
 
 @export_category("Inventory Manager")
 @export var itemDatabase : ItemDatabase
@@ -18,12 +16,18 @@ extends Node
 @export var contextMenu : Control
 
 @export_group("Swap Items")
+@export var swapIndicatior : TextureRect
 @export var swapFrom : ItemSlot
 @export var swapTo : ItemSlot
 @export var storedSwapItem : InventoryItem
 
 @export_group("Debug")
 @export var debugItemName : TextEdit
+var toIITtem
+var fromIITtem
+var toItem
+var fromItem
+		
 
 func _ready():
 	for slot in maxItems:
@@ -36,6 +40,9 @@ func _ready():
 	InventorySignalManager.connect("dropItem", removeItem)
 	InventorySignalManager.connect("slotClicked", swapItems)
 
+func _process(delta):
+	if swapIndicatior.visible:
+		swapIndicatior.position = get_global_mouse_position()
 
 func addItem(itemToAdd : InventoryItem):
 	
@@ -70,17 +77,74 @@ func findNextEmptySlot():
 
 func swapItems(itemSlotClicked : ItemSlot):
 	if swapFrom == null:
-		swapFrom = itemSlotClicked
+		if itemSlotClicked.itemInSlot != null:
+			swapFrom = itemSlotClicked
+			swapIndicatior.show()
+			swapIndicatior.texture = swapFrom.itemInSlot.itemObject.itemSprite
 	else:
 		swapTo = itemSlotClicked
 		
-		storedSwapItem = swapFrom.itemInSlot
-		swapFrom.itemInSlot = swapTo.itemInSlot
-		swapTo.itemInSlot = storedSwapItem
+		if swapTo.itemInSlot != null:
+			toItem = swapTo.itemInSlot.itemObject
+			toIITtem = swapTo.itemInSlot
+		
+		fromIITtem = swapFrom.itemInSlot
+		fromItem = swapFrom.itemInSlot.itemObject
+		
+		#if the slot that has been selected has an item continue
+		if swapFrom.itemInSlot != null:
+			#checks if the current slot is a magazine
+			if swapTo.itemInSlot != null:
+				if toIITtem.get_script() == MagazineInventoryItem:
+					magazineItemSwap()
+				else:
+					swapSlots()
+			else:
+				swapSlots()
 		
 		swapFrom = null
 		swapTo = null
 		storedSwapItem = null
+		swapIndicatior.hide()
+
+func swapSlots():
+	print("Swapping")
+	#stores the item being swapped
+	storedSwapItem = swapFrom.itemInSlot
+	
+	swapFrom.itemInSlot = swapTo.itemInSlot
+	swapTo.itemInSlot = storedSwapItem
+	
+	swapFrom.updateUI()
+	swapTo.updateUI()
+
+func magazineItemSwap():
+#checks if its swapping with a bullet
+	if fromItem.get_script() == BulletItem:
+		#if so it checks if theyre the same caliber
+		if fromItem.bulletCaliber == toItem.bulletCaliber:
+			#only continues if theyre the same caliber
+			
+			#stops the combinging if the magazine is at full
+			if not toIITtem.bulletsInMag.size() >= toItem.maxAmmo:
+				#if itnt is it combines them to fill the mag
+				for amount in fromIITtem.itemAmount:
+					
+					#stops the combinging if the magazine is at full
+					if not toIITtem.bulletsInMag.size() >= toItem.maxAmmo:
+						#adds the bullet to the item and removes 1 from the stack size
+						toIITtem.bulletsInMag.append(fromItem)
+						fromIITtem.itemAmount -= 1
+					
+						#updates the slots ui
+						swapFrom.updateUI()
+						swapTo.updateUI()
+			else:
+				swapSlots()
+		else:
+			swapSlots()
+	else:
+		swapSlots()
 
 func removeItem(itemToRemove : InventoryItem):
 	if itemToRemove != null and itemToRemove.itemObject != null:

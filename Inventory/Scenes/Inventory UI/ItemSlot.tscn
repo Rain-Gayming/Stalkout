@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Inventory/Scripts/Inventory UI/itemSlot.gd" id="1_3ighl"]
 
-[node name="ItemSlot" type="Control" node_paths=PackedStringArray("itemIcon", "amountText")]
+[node name="ItemSlot" type="Control" node_paths=PackedStringArray("itemIcon", "amountText", "fillText")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
@@ -11,6 +11,7 @@ offset_bottom = 40.0
 script = ExtResource("1_3ighl")
 itemIcon = NodePath("ItemIcon")
 amountText = NodePath("ItemAmountText")
+fillText = NodePath("ItemFillAmountText")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -44,6 +45,23 @@ grow_vertical = 2
 mouse_filter = 2
 bbcode_enabled = true
 text = "[right] 1 [/right] "
+fit_content = true
+scroll_active = false
+
+[node name="ItemFillAmountText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 23.0
+offset_right = 24.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.625, 0.625)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[right] 30/30 [/right] "
 fit_content = true
 scroll_active = false
 

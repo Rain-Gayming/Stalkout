@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="ItemDatabase" load_steps=5 format=3 uid="uid://b3ed1888jnq7q"]
+[gd_resource type="Resource" script_class="ItemDatabase" load_steps=6 format=3 uid="uid://b3ed1888jnq7q"]
 
 [ext_resource type="Resource" uid="uid://btfyl3onibtf0" path="res://Inventory/Items/Attachments/Magazines/5.56x45mm/IMag_5.56x45mm STANAG 30-Round.tres" id="1_cpfn3"]
 [ext_resource type="Script" path="res://Inventory/Scripts/itemDatabase.gd" id="1_m2dbx"]
 [ext_resource type="Resource" uid="uid://c7qxajrc456cp" path="res://Inventory/Items/Materials/Components/Mat_Wood.tres" id="2_6tao0"]
 [ext_resource type="Resource" uid="uid://bv8s8n0f26ona" path="res://Inventory/Items/Weapons/Ranged/Assault Rifles/M4A1/IAR_M4A1.tres" id="3_lnxvf"]
+[ext_resource type="Resource" uid="uid://boohjbgoggrvo" path="res://Inventory/Items/Bullets/5.56x45mm/IBull_5.56x45mm NATO FMJ.tres" id="4_2ddsw"]
 
 [resource]
 script = ExtResource("1_m2dbx")
-items = Array[Resource("res://Inventory/Scripts/Item Info/itemObject.gd")]([ExtResource("1_cpfn3"), ExtResource("2_6tao0"), ExtResource("3_lnxvf")])
+items = Array[Resource("res://Inventory/Scripts/Item Info/itemObject.gd")]([ExtResource("1_cpfn3"), ExtResource("2_6tao0"), ExtResource("3_lnxvf"), ExtResource("4_2ddsw")])
